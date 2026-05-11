@@ -1,0 +1,21 @@
+\begin{table}[t]
+\caption{Per-class F1 (mean $\pm$ 95\% bootstrap CI, 5 seeds): Hermes-4-405B vs.\ RandomForest on n-baiot (fine). Significant LLM advantages are bolded.}
+\label{t:r2_perclass}
+\begin{tabular}{lccr}
+\hline
+Class & Hermes-4-405B F1 & RF F1 & $\Delta$ F1 \\
+\hline
+benign & 0.937 [0.905,0.965] & 0.890 [0.787,0.952] & +0.047 \\
+gafgyt-combo & 0.603 [0.451,0.698] & \textbf{0.640 [0.500,0.721]} & -0.037 \\
+gafgyt-junk & 0.605 [0.464,0.697] & 0.632 [0.471,0.751] & -0.027 \\
+gafgyt-scan & \textbf{0.966 [0.938,0.992]} & 0.924 [0.881,0.959] & \textbf{+0.042} \\
+gafgyt-tcp & \textbf{0.953 [0.931,0.974]} & 0.917 [0.865,0.948] & \textbf{+0.036} \\
+gafgyt-udp & 0.959 [0.930,0.982] & 0.981 [0.965,0.996] & -0.021 \\
+mirai-ack & 0.593 [0.502,0.685] & 0.695 [0.656,0.750] & -0.102 \\
+mirai-scan & 0.969 [0.941,0.990] & 0.915 [0.804,0.981] & +0.054 \\
+mirai-syn & 0.977 [0.951,0.994] & 0.985 [0.968,0.998] & -0.008 \\
+mirai-udp & 0.632 [0.573,0.702] & 0.690 [0.614,0.773] & -0.058 \\
+mirai-udpplain & 0.687 [0.639,0.756] & 0.670 [0.605,0.760] & +0.017 \\
+\hline
+\end{tabular}
+\end{table}

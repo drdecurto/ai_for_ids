@@ -1,0 +1,13 @@
+\begin{table}[t]
+\caption{Per-class F1 (mean $\pm$ 95\% bootstrap CI, 5 seeds): Gemma-3-27B-it vs.\ RandomForest on n-baiot (grouped). Significant LLM advantages are bolded.}
+\label{t:r2_perclass}
+\begin{tabular}{lccr}
+\hline
+Class & Gemma-3-27B-it F1 & RF F1 & $\Delta$ F1 \\
+\hline
+benign & \textbf{0.984 [0.970,0.994]} & 0.961 [0.948,0.978] & \textbf{+0.023} \\
+gafgyt & \textbf{0.905 [0.846,0.963]} & 0.849 [0.808,0.879] & \textbf{+0.057} \\
+mirai & 0.921 [0.880,0.962] & 0.853 [0.770,0.905] & +0.068 \\
+\hline
+\end{tabular}
+\end{table}
