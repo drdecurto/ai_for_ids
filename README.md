@@ -15,8 +15,9 @@ The repository covers both evaluation axes:
   partition. Runs through the `src/` framework and the
   `models_use_example.ipynb` / `multiseed_validation_example.ipynb`
   notebooks. **The five-seed re-runs that back Section 5.3 of the paper
-  (CIC-IDS2017 V1, V2, V3 across Random Forest, TabPFN, TabPFN 2.5, TabICL,
-  TabSTAR) are bundled under `multiseed_runs/`, and the figure and
+  (all four CIC-IDS2017 variants V1–V4 across Random Forest, TabPFN,
+  TabPFN 2.5, TabICL, TabSTAR, with TabSTAR now on every variant) are
+  bundled under `multiseed_runs/`, and the figure and
   per-class delta table they produce (`fgr:multiseed-ci-bars`,
   `t:multiseed-headline`, `t:multiseed-tabpfn-perclass-full` in the paper)
   are regenerated end-to-end by `multiseed_v2_analysis.ipynb` without
@@ -108,14 +109,15 @@ ai_for_ids/
 │   │
 │   ├── cic_ids2017_V1/                    # V1 — no PCA, no class mapping
 │   ├── cic_ids2017_V2/                    # V2 — PCA, no class mapping
-│   └── cic_ids2017_V3/                    # V3 — no PCA, class mapping (no TabSTAR)
+│   ├── cic_ids2017_V3/                    # V3 — no PCA, class mapping
+│   └── cic_ids2017_V4/                    # V4 — PCA, class mapping
 │       │
 │       │   Per-directory contents:
 │       │     random_forest_per_seed.csv   random_forest_summary.json
 │       │     tabpfn_per_seed.csv          tabpfn_summary.json
 │       │     tabpfn_2.5_per_seed.csv      tabpfn_2.5_summary.json
 │       │     tabicl_per_seed.csv          tabicl_summary.json
-│       │     tabstar_per_seed.csv         tabstar_summary.json   (V1, V2 only)
+│       │     tabstar_per_seed.csv         tabstar_summary.json   (all variants V1–V4)
 │
 ├── data_llm/                              # Axis 2 — bundled results, eight runs.
     │                                      # All seven paper configurations are
@@ -240,14 +242,15 @@ three is a faster floor; two gives no meaningful CI.
 
 The five-seed re-runs that produce Section 5.3 of the paper are committed
 in full under `multiseed_runs/`, so **no re-run is required** to inspect
-the figure and tables they back. Coverage is the three CIC-IDS2017
+the figure and tables they back. Coverage is all four CIC-IDS2017
 variants that Section 5.3 reports:
 
 | Variant directory                    | PCA | Class mapping | Foundation models present | Paper section  |
 |--------------------------------------|-----|---------------|----------------------------|----------------|
 | `multiseed_runs/cic_ids2017_V1/`     |  no |  no (15 cls)  | RF, TabPFN, TabPFN 2.5, TabICL, TabSTAR | §5.3.1 + §5.3.2 + §5.3.3 |
 | `multiseed_runs/cic_ids2017_V2/`     |  yes |  no (15 cls) | RF, TabPFN, TabPFN 2.5, TabICL, TabSTAR | §5.3.1 + §5.3.2 + §5.3.3 |
-| `multiseed_runs/cic_ids2017_V3/`     |  no |  yes (9 cls) | RF, TabPFN, TabPFN 2.5, TabICL          | §5.3.1 + §5.3.2 (TabSTAR not multi-seed on V3 for compute) |
+| `multiseed_runs/cic_ids2017_V3/`     |  no |  yes (9 cls) | RF, TabPFN, TabPFN 2.5, TabICL, TabSTAR | §5.3.1 + §5.3.2 + §5.3.3 |
+| `multiseed_runs/cic_ids2017_V4/`     |  yes |  yes (9 cls) | RF, TabPFN, TabPFN 2.5, TabICL, TabSTAR | §5.3.1 + §5.3.2 + §5.3.3 |
 
 Each per-model summary JSON holds the five-seed mean, the
 5,000-resample bootstrap 95 % CI on accuracy / macro-F1, and per-class
@@ -357,7 +360,9 @@ directory under `multiseed_runs/`.
 |-----------------------------------------------------------------|-------------------------------------------------------------------------------------------------------------|
 | `t:multiseed-headline` row, V1 (per model)                      | `multiseed_runs/cic_ids2017_V1/<model>_summary.json`                                                        |
 | `t:multiseed-headline` row, V2 (per model)                      | `multiseed_runs/cic_ids2017_V2/<model>_summary.json`                                                        |
-| `t:multiseed-headline` row, V3 (per model, no TabSTAR)          | `multiseed_runs/cic_ids2017_V3/<model>_summary.json`                                                        |
+| `t:multiseed-headline` row, V3 (per model)                      | `multiseed_runs/cic_ids2017_V3/<model>_summary.json`                                                        |
+| `t:multiseed-headline` row, V4 (per model)                      | `multiseed_runs/cic_ids2017_V4/<model>_summary.json`                                                        |
+| `t:multiseed-tabpfn-perclass-v4` (per-class TabPFN 2.5 − TabPFN, V4) | `multiseed_v2_analysis.ipynb` → `table_tabpfn_delta_v4.tex`                                            |
 | `t:multiseed-tabpfn-perclass-full` (per-class TabPFN 2.5 − TabPFN, all variants) | `multiseed_v2_analysis.ipynb` → `table_tabpfn_delta.tex`                              |
 | `fgr:multiseed-ci-bars` (accuracy + macro-F1 panels)            | `multiseed_v2_analysis.ipynb` → `multiseed_ci_bars.{pdf,png}`                                               |
 | TabSTAR rare-class CIs cited in §5.3.3                          | `multiseed_runs/cic_ids2017_V1/tabstar_summary.json` (Heartbleed, Infiltration, Web Attack subclasses)      |
@@ -846,5 +851,5 @@ Two notebooks form a producer / consumer pair around `multiseed_runs/`:
 | `multiseed_v2_analysis.ipynb`        | consumer | `multiseed_runs/`                | `multiseed_ci_bars.{pdf,png}`, `table_tabpfn_delta.tex`, inline pandas tables |
 
 The bundled `multiseed_runs/` directory was produced by the first
-notebook for the three CIC-IDS2017 variants (V1, V2, V3) reported in
+notebook for all four CIC-IDS2017 variants (V1–V4) reported in
 Section 5.3 of the paper.
