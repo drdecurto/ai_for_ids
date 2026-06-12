@@ -1,0 +1,4 @@
+class_a,class_b,standardised_centroid_dist
+Web Attack,BENIGN,0.0783486683605067
+DoS,DDoS,2.8377367874135357
+Infiltration,BENIGN,3.8475098927683486

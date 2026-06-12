@@ -14,7 +14,13 @@ The repository covers both evaluation axes:
   variants per dataset, on the standard 70/30 stratified imbalanced test
   partition. Runs through the `src/` framework and the
   `models_use_example.ipynb` / `multiseed_validation_example.ipynb`
-  notebooks.
+  notebooks. **The five-seed re-runs that back Section 5.3 of the paper
+  (CIC-IDS2017 V1, V2, V3 across Random Forest, TabPFN, TabPFN 2.5, TabICL,
+  TabSTAR) are bundled under `multiseed_runs/`, and the figure and
+  per-class delta table they produce (`fgr:multiseed-ci-bars`,
+  `t:multiseed-headline`, `t:multiseed-tabpfn-perclass-full` in the paper)
+  are regenerated end-to-end by `multiseed_v2_analysis.ipynb` without
+  re-running any model.**
 
 - **Axis 2 — Controlled few-shot LLM benchmark.** Six open-source LLMs from
   four vendors (Meta Llama 3.1/3.3, Alibaba Qwen3, Nous Hermes-4, Google
@@ -38,7 +44,8 @@ comparable**.
    - [Axis 1 — Operational foundation-model benchmark](#axis-1--operational-foundation-model-benchmark)
    - [Axis 2 — Controlled few-shot LLM benchmark](#axis-2--controlled-few-shot-llm-benchmark)
 3. [Reproducibility map: paper figures and tables](#reproducibility-map-paper-figures-and-tables)
-4. [Protocol separation: why the two axes are not directly comparable](#protocol-separation-why-the-two-axes-are-not-directly-comparable)
+4. [revision: control and robustness experiments (`data_v8/`)](#revision-control-and-robustness-experiments-data_v8)
+5. [Protocol separation: why the two axes are not directly comparable](#protocol-separation-why-the-two-axes-are-not-directly-comparable)
 5. [Modules — Specs](#modules--specs)
    - [DATA](#data)
    - [MODELS](#models)
@@ -71,15 +78,46 @@ ai_for_ids/
 │       └── utils.py
 │
 ├── models_use_example.ipynb               # Axis 1 — single-seed walkthrough
-├── multiseed_validation_example.ipynb     # Axis 1 — multi-seed with bootstrap CIs
+├── multiseed_validation_example.ipynb     # Axis 1 — multi-seed runner: how to
+│                                          #   produce runs into multiseed_runs/
+├── multiseed_v2_analysis.ipynb            # Axis 1 — multi-seed analysis: reads
+│                                          #   multiseed_runs/ and regenerates
+│                                          #   Fig. 9 + Tables 7–8 of the paper
 ├── llms_use_example.ipynb                 # legacy: Mistral / Gemini API demos
 │                                          # (superseded by ids_llm_nebius_v7
 │                                          #  for the paper's LLM evaluation)
 │
 ├── ids_llm_nebius_v7.ipynb                # Axis 2 — standalone, self-contained
 │                                          # Colab notebook (Nebius endpoint)
+├── ids_llm_nebius_v8.ipynb                # Axis 2 (revision) — adds the
+│                                          # robustness experiments E10–E14 from
+│                                          # the response to reviewers; writes to
+│                                          # data_v8/reviewer_response/
+├── rf_control_and_xgb_repo_v4_1.ipynb     # Axis 1 (revision) — matched-
+│                                          # budget classical controls (pruned /
+│                                          # strong RF, XGBoost full + balanced);
+│                                          # writes to data_v8/rf_control_and_xgb/
 │
-└── data_llm/                              # Axis 2 — bundled results, eight runs.
+├── multiseed_runs/                        # Axis 1 — bundled multi-seed results
+│   │                                      # backing Section 5.3 of the paper.
+│   │                                      # Each cell folder holds, per model,
+│   │                                      # the per-seed CSV (audit trail) and
+│   │                                      # the aggregate summary JSON
+│   │                                      # (5-seed mean, 5,000-resample
+│   │                                      #  bootstrap 95 % CI, per-class F1).
+│   │
+│   ├── cic_ids2017_V1/                    # V1 — no PCA, no class mapping
+│   ├── cic_ids2017_V2/                    # V2 — PCA, no class mapping
+│   └── cic_ids2017_V3/                    # V3 — no PCA, class mapping (no TabSTAR)
+│       │
+│       │   Per-directory contents:
+│       │     random_forest_per_seed.csv   random_forest_summary.json
+│       │     tabpfn_per_seed.csv          tabpfn_summary.json
+│       │     tabpfn_2.5_per_seed.csv      tabpfn_2.5_summary.json
+│       │     tabicl_per_seed.csv          tabicl_summary.json
+│       │     tabstar_per_seed.csv         tabstar_summary.json   (V1, V2 only)
+│
+├── data_llm/                              # Axis 2 — bundled results, eight runs.
     │                                      # All seven paper configurations are
     │                                      # included plus a CIC-IDS2017 replicate
     │                                      # held in reserve as a sanity check.
@@ -108,6 +146,32 @@ ai_for_ids/
         e7_convergence/   e8_hybrid/       # E7 N_test sweep; E8 LLM+RF hybrid
         e9_scaling/                        # E9 within-family scaling
         ids_llm_v7_master.xlsx             # consolidated workbook
+
+└── data_v8/                               # revision — control & robustness
+    │                                      # results backing the response to
+    │                                      # reviewers. Numbers here populate the
+    │                                      # new tables of the revised manuscript.
+    │
+    ├── rf_control_and_xgb/                # Axis 1 — matched-budget classical
+    │   │                                  # controls (Table 8 new rows,
+    │   │                                  # Tables: per-class controls + budget)
+    │   ├── cic_ids2017_V1/                # per-seed + per-class CSVs, per variant:
+    │   ├── cic_ids2017_V2/                #   rf_pruned_fulltrain_*  (operational RF)
+    │   ├── cic_ids2017_V3/                #   rf_pruned_balanced_*   (pruned, bal. budget)
+    │   ├── cic_ids2017_V4/                #   rf_strong_balanced_*   (200-tree, bal. budget)
+    │   │                                  #   xgboost_*              (full + balanced)
+    │   ├── A1_decomposition.csv           # accuracy decomposed: data-condition
+    │   │                                  #   effect vs balanced-RF reference
+    │   ├── A3_gbm_vs_panel.csv            # XGBoost acc / macro-F1 / fit-time vs panel
+    │   └── new_rows.tex                   # the three control rows for Table 8
+    │
+    └── reviewer_response/                 # Axis 2 — robustness suite (E10–E14)
+        ├── e10_rf_sensitivity/            # six-anchor parity sensitivity
+        ├── e11_full_feature_rf/           # 12-feature vs full-feature RF parity
+        ├── e2b_kshot_multimodel/          # k-sweep on 3 LLMs + RF (no k=5 plateau)
+        ├── e13_cross_dataset/             # CIC-IDS2017 -> CSE-CIC-IDS2018 transfer
+        └── e14_rareclass_deepdive/        # confusion leakage + centroid distance
+                                           #   (DoS/DDoS vs Web-Attack/BENIGN)
 ```
 
 ## Quickstart
@@ -171,6 +235,46 @@ accuracy / macro-F1 with bootstrap 95 % CIs. `run_panel(...)` sweeps a whole
 model panel against shared seeds, with paired Wilcoxon p-values for
 cell-by-cell comparisons. Recommended seed budget is 5 (matches Axis 2);
 three is a faster floor; two gives no meaningful CI.
+
+#### Bundled multi-seed results (Section 5.3 of the paper)
+
+The five-seed re-runs that produce Section 5.3 of the paper are committed
+in full under `multiseed_runs/`, so **no re-run is required** to inspect
+the figure and tables they back. Coverage is the three CIC-IDS2017
+variants that Section 5.3 reports:
+
+| Variant directory                    | PCA | Class mapping | Foundation models present | Paper section  |
+|--------------------------------------|-----|---------------|----------------------------|----------------|
+| `multiseed_runs/cic_ids2017_V1/`     |  no |  no (15 cls)  | RF, TabPFN, TabPFN 2.5, TabICL, TabSTAR | §5.3.1 + §5.3.2 + §5.3.3 |
+| `multiseed_runs/cic_ids2017_V2/`     |  yes |  no (15 cls) | RF, TabPFN, TabPFN 2.5, TabICL, TabSTAR | §5.3.1 + §5.3.2 + §5.3.3 |
+| `multiseed_runs/cic_ids2017_V3/`     |  no |  yes (9 cls) | RF, TabPFN, TabPFN 2.5, TabICL          | §5.3.1 + §5.3.2 (TabSTAR not multi-seed on V3 for compute) |
+
+Each per-model summary JSON holds the five-seed mean, the
+5,000-resample bootstrap 95 % CI on accuracy / macro-F1, and per-class
+F1 with its own CI. The matching `*_per_seed.csv` carries the raw
+per-seed accuracy / macro-F1 values (audit trail).
+
+The companion notebook **`multiseed_v2_analysis.ipynb`** reads
+`multiseed_runs/` and emits the paper artefacts directly:
+
+- the two-panel CI-bars figure for `fgr:multiseed-ci-bars` (multi-seed
+  accuracy on the left, macro-F1 on the right, across variants), saved
+  as `multiseed_ci_bars.{pdf,png}`;
+- the per-class TabPFN 2.5 vs. TabPFN delta table backing
+  `t:multiseed-tabpfn-perclass-full` in two forms: a pandas DataFrame
+  for inspection and a LaTeX snippet (`table_tabpfn_delta.tex`) with
+  the disjoint-CI significance markers (`★` favours TabPFN 2.5,
+  `▼` favours TabPFN).
+
+Run:
+
+```bash
+jupyter notebook multiseed_v2_analysis.ipynb
+```
+
+The notebook has no model dependencies — only `numpy`, `matplotlib`, and
+`pandas` — so it executes in seconds on any environment that can read
+JSON.
 
 ### Axis 2 — Controlled few-shot LLM benchmark
 
@@ -241,6 +345,34 @@ completion it emits a master Excel workbook (`ids_llm_v7_master.xlsx`)
 with one sheet per experiment.
 
 
+### Axis 1 — Section 5.3 multi-seed (`multiseed_runs/`)
+
+The five-seed re-runs that back Section 5.3 of the paper. Every cell-level
+value cited in §5.3 — the headline `t:multiseed-headline` accuracy and
+macro-F1 table, the per-class `t:multiseed-tabpfn-perclass-full` delta
+table, and the rare-class commentary on TabSTAR — reads from a single
+directory under `multiseed_runs/`.
+
+| Paper element                                                   | File                                                                                                        |
+|-----------------------------------------------------------------|-------------------------------------------------------------------------------------------------------------|
+| `t:multiseed-headline` row, V1 (per model)                      | `multiseed_runs/cic_ids2017_V1/<model>_summary.json`                                                        |
+| `t:multiseed-headline` row, V2 (per model)                      | `multiseed_runs/cic_ids2017_V2/<model>_summary.json`                                                        |
+| `t:multiseed-headline` row, V3 (per model, no TabSTAR)          | `multiseed_runs/cic_ids2017_V3/<model>_summary.json`                                                        |
+| `t:multiseed-tabpfn-perclass-full` (per-class TabPFN 2.5 − TabPFN, all variants) | `multiseed_v2_analysis.ipynb` → `table_tabpfn_delta.tex`                              |
+| `fgr:multiseed-ci-bars` (accuracy + macro-F1 panels)            | `multiseed_v2_analysis.ipynb` → `multiseed_ci_bars.{pdf,png}`                                               |
+| TabSTAR rare-class CIs cited in §5.3.3                          | `multiseed_runs/cic_ids2017_V1/tabstar_summary.json` (Heartbleed, Infiltration, Web Attack subclasses)      |
+| Per-seed accuracy / macro-F1 audit trail (any model, any cell)  | `multiseed_runs/cic_ids2017_V{1,2,3}/<model>_per_seed.csv`                                                  |
+
+The Mann–Whitney *U* and disjoint-CI checks reported in §5.3 are
+recomputed in `multiseed_v2_analysis.ipynb` from these JSON / CSV files,
+so the table in the paper, the figure, and the LaTeX-ready snippet
+emitted by the notebook share a single source of truth on disk.
+
+### Axis 2 — Section 4 (controlled LLM benchmark)
+
+The remaining entries in this map cover the Axis 2 LLM benchmark and are
+sourced from `data_llm/ids_llm_v7*/`.
+
 ### Table 2 — R1 multi-seed accuracy + CIs (7 rows, 7 directories)
 
 | Paper row                                | File                                                          |
@@ -308,6 +440,51 @@ of Fig. 4); the paper renders only the primary one for space.
 
 These files appear inside every `data_llm/ids_llm_v7*/` directory; replace the
 prefix with the directory of interest to inspect a specific configuration.
+
+
+## revision: control and robustness experiments (`data_v8/`)
+
+The revision adds one control experiment and a robustness suite requested
+by the reviewers. Both are reproducible from the two notebooks at the repo
+root and write their outputs into `data_v8/`. The numbers below populate the
+new tables of the revised manuscript.
+
+**Axis 1 — matched-budget classical controls** (`rf_control_and_xgb_repo_v4_1.ipynb`
+→ `data_v8/rf_control_and_xgb/`). Re-fits two classical learners on the *same*
+class-balanced budget the foundation models use (~2,000 rows/class), plus
+XGBoost on the full partition for reference, on all four CIC-IDS2017 variants
+(five seeds). This isolates architecture from data condition: on the matched
+balanced budget XGBoost's macro-F1 collapses by 20–25 pp and the best
+foundation model leads it on every variant.
+
+| File | Backs |
+|------|-------|
+| `cic_ids2017_V{1..4}/rf_pruned_fulltrain_*` | operational Axis-1 RF (Table 8) |
+| `cic_ids2017_V{1..4}/rf_pruned_balanced_*`  | pruned RF, balanced budget |
+| `cic_ids2017_V{1..4}/rf_strong_balanced_*`  | 200-tree RF, balanced budget |
+| `cic_ids2017_V{1..4}/xgboost_*`             | XGBoost full + balanced |
+| `A1_decomposition.csv`                      | data-condition vs balanced-RF reference |
+| `A3_gbm_vs_panel.csv`                       | XGBoost acc / macro-F1 / fit-time |
+| `new_rows.tex`                              | the three control rows added to Table 8 |
+
+Each variant folder holds, per learner, a `*_per_seed.csv` (audit trail) and a
+`*_perclass.csv` (per-class precision/recall/F1 backing the rare-class control
+table).
+
+**Axis 2 — robustness suite E10–E14** (`ids_llm_nebius_v8.ipynb`
+→ `data_v8/reviewer_response/`). Five checks on the LLM-vs-RF parity result.
+
+| Directory | Backs |
+|-----------|-------|
+| `e10_rf_sensitivity/`     | six-anchor parity sensitivity (parity holds vs every tree ensemble) |
+| `e11_full_feature_rf/`    | 12-feature vs full-feature RF — parity survives ($p_\mathrm{Bonf}=0.62$) |
+| `e2b_kshot_multimodel/`   | *k*-sweep on three LLMs + RF — accuracy keeps rising through *k*=12 (no plateau) |
+| `e13_cross_dataset/`      | CIC-IDS2017 → CSE-CIC-IDS2018 transfer (both collapse; RF transfers better) |
+| `e14_rareclass_deepdive/` | confusion leakage + standardised centroid distance (DoS/DDoS vs Web-Attack/BENIGN) |
+
+> **Credentials.** Neither notebook hardcodes any key. Set `NEBIUS_API_KEY`,
+> `KAGGLE_USERNAME`, and `KAGGLE_KEY` via Colab Secrets or environment variables
+> (see [Secrets](#secrets)) before running.
 
 
 ## Protocol separation: why the two axes are not directly comparable
@@ -658,3 +835,16 @@ for sanity-checking but does not give a meaningful CI. TabSTAR is the
 expensive model in the panel because of the LoRA fine-tune; running it with
 a smaller seed budget (e.g. `seeds=(0, 1)`) while the rest of the panel
 runs at five seeds is a reasonable compromise.
+
+### Multi-seed analysis: producing Section 5.3 of the paper
+
+Two notebooks form a producer / consumer pair around `multiseed_runs/`:
+
+| Notebook                             | Role     | Reads                            | Writes                                                         |
+|--------------------------------------|----------|----------------------------------|----------------------------------------------------------------|
+| `multiseed_validation_example.ipynb` | producer | datasets via `src/data`          | `multiseed_runs/<cell>/<model>_per_seed.csv` and `_summary.json` |
+| `multiseed_v2_analysis.ipynb`        | consumer | `multiseed_runs/`                | `multiseed_ci_bars.{pdf,png}`, `table_tabpfn_delta.tex`, inline pandas tables |
+
+The bundled `multiseed_runs/` directory was produced by the first
+notebook for the three CIC-IDS2017 variants (V1, V2, V3) reported in
+Section 5.3 of the paper.

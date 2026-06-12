@@ -1,0 +1,6 @@
+true,predicted,LLM_leak,RF_leak
+DoS,DDoS,0.02,0.0
+DDoS,DoS,0.1,0.1
+Web Attack,BENIGN,0.0,0.0
+Infiltration,BENIGN,0.03225806451612903,0.0
+Heartbleed,BENIGN,0.0,0.0
