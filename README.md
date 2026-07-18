@@ -15,12 +15,16 @@ The repository covers both evaluation axes:
   partition. Runs through the `src/` framework and the
   `models_use_example.ipynb` / `multiseed_validation_example.ipynb`
   notebooks. **The five-seed re-runs that back Section 5.3 of the paper
-  (CIC-IDS2017 V1, V2, V3 across Random Forest, TabPFN, TabPFN 2.5, TabICL,
-  TabSTAR) are bundled under `multiseed_runs/`, and the figure and
-  per-class delta table they produce (`fgr:multiseed-ci-bars`,
-  `t:multiseed-headline`, `t:multiseed-tabpfn-perclass-full` in the paper)
-  are regenerated end-to-end by `multiseed_v2_analysis.ipynb` without
-  re-running any model.**
+  now cover the entire Axis-1 panel — all ten dataset–variant cells
+  (CIC-IDS2017 V1–V4, N-BaIoT V1–V4, CIC-UNSW V1–V2) across Random
+  Forest, TabPFN, TabPFN 2.5, TabICL, and TabSTAR — bundled under
+  `multiseed_runs/`. The CIC-IDS2017 figure and per-class delta table
+  (`fgr:multiseed-ci-bars`, `t:multiseed-headline`,
+  `t:multiseed-tabpfn-perclass-full` in the paper) are regenerated
+  end-to-end by `multiseed_v2_analysis.ipynb`, and the N-BaIoT/CIC-UNSW
+  extension tables (`t:multiseed-extension`, `t:unsw-rareclass`) by the
+  A1-AGG cell of `r2_additional_experiments.ipynb`, without re-running
+  any model.**
 
 - **Axis 2 — Controlled few-shot LLM benchmark.** Six open-source LLMs from
   four vendors (Meta Llama 3.1/3.3, Alibaba Qwen3, Nous Hermes-4, Google
@@ -44,7 +48,7 @@ comparable**.
    - [Axis 1 — Operational foundation-model benchmark](#axis-1--operational-foundation-model-benchmark)
    - [Axis 2 — Controlled few-shot LLM benchmark](#axis-2--controlled-few-shot-llm-benchmark)
 3. [Reproducibility map: paper figures and tables](#reproducibility-map-paper-figures-and-tables)
-4. [revision: control and robustness experiments (`data_v8/`)](#revision-control-and-robustness-experiments-data_v8)
+4. [revision: control, robustness, and round-2 experiments (`data_v8/`)](#revision-control-and-robustness-experiments-data_v8)
 5. [Protocol separation: why the two axes are not directly comparable](#protocol-separation-why-the-two-axes-are-not-directly-comparable)
 5. [Modules — Specs](#modules--specs)
    - [DATA](#data)
@@ -97,6 +101,16 @@ ai_for_ids/
 │                                          # budget classical controls (pruned /
 │                                          # strong RF, XGBoost full + balanced);
 │                                          # writes to data_v8/rf_control_and_xgb/
+├── r2_additional_experiments.ipynb        # revision round 2 — aggregates the
+│                                          # multi-seed extension (A1-AGG), the
+│                                          # alarm-level cost analysis (E16-COST),
+│                                          # and the feature-budget sweep (E15-FB);
+│                                          # writes to data_v8/multiseed_extension/,
+│                                          # data_v8/e16_cost/, e15_feature_budget/
+├── multiseed_validation.py                # Axis 1 — headless multi-seed runner
+│                                          # (script twin of the example notebook);
+│                                          # produced the N-BaIoT and CIC-UNSW
+│                                          # cells of multiseed_runs/
 │
 ├── multiseed_runs/                        # Axis 1 — bundled multi-seed results
 │   │                                      # backing Section 5.3 of the paper.
@@ -108,14 +122,17 @@ ai_for_ids/
 │   │
 │   ├── cic_ids2017_V1/                    # V1 — no PCA, no class mapping
 │   ├── cic_ids2017_V2/                    # V2 — PCA, no class mapping
-│   └── cic_ids2017_V3/                    # V3 — no PCA, class mapping (no TabSTAR)
+│   ├── cic_ids2017_V3/                    # V3 — no PCA, class mapping
+│   ├── cic_ids2017_V4/                    # V4 — PCA, class mapping
+│   ├── n_baiot_V1/ … n_baiot_V4/          # round 2 — same V1–V4 grid on N-BaIoT
+│   └── cic_unsw_V1/  cic_unsw_V2/         # round 2 — CIC-UNSW (no PCA / PCA)
 │       │
 │       │   Per-directory contents:
 │       │     random_forest_per_seed.csv   random_forest_summary.json
 │       │     tabpfn_per_seed.csv          tabpfn_summary.json
 │       │     tabpfn_2.5_per_seed.csv      tabpfn_2.5_summary.json
 │       │     tabicl_per_seed.csv          tabicl_summary.json
-│       │     tabstar_per_seed.csv         tabstar_summary.json   (V1, V2 only)
+│       │     tabstar_per_seed.csv         tabstar_summary.json   (all variants V1–V4)
 │
 ├── data_llm/                              # Axis 2 — bundled results, eight runs.
     │                                      # All seven paper configurations are
@@ -165,13 +182,25 @@ ai_for_ids/
     │   ├── A3_gbm_vs_panel.csv            # XGBoost acc / macro-F1 / fit-time vs panel
     │   └── new_rows.tex                   # the three control rows for Table 8
     │
-    └── reviewer_response/                 # Axis 2 — robustness suite (E10–E14)
-        ├── e10_rf_sensitivity/            # six-anchor parity sensitivity
-        ├── e11_full_feature_rf/           # 12-feature vs full-feature RF parity
-        ├── e2b_kshot_multimodel/          # k-sweep on 3 LLMs + RF (no k=5 plateau)
-        ├── e13_cross_dataset/             # CIC-IDS2017 -> CSE-CIC-IDS2018 transfer
-        └── e14_rareclass_deepdive/        # confusion leakage + centroid distance
-                                           #   (DoS/DDoS vs Web-Attack/BENIGN)
+    ├── reviewer_response/                 # Axis 2 — robustness suite (E10–E14)
+    │   ├── e10_rf_sensitivity/            # six-anchor parity sensitivity
+    │   ├── e11_full_feature_rf/           # 12-feature vs full-feature RF parity
+    │   ├── e2b_kshot_multimodel/          # k-sweep on 3 LLMs + RF (no k=5 plateau)
+    │   ├── e13_cross_dataset/             # CIC-IDS2017 -> CSE-CIC-IDS2018 transfer
+    │   └── e14_rareclass_deepdive/        # confusion leakage + centroid distance
+    │                                      #   (DoS/DDoS vs Web-Attack/BENIGN)
+    │
+    ├── multiseed_extension/               # round 2 — aggregation of the N-BaIoT +
+    │                                      #   CIC-UNSW five-seed cells: summary CSV
+    │                                      #   + LaTeX for t:multiseed-extension and
+    │                                      #   t:unsw-rareclass (A1-AGG cell)
+    ├── e16_cost/                          # round 2 — alarm-level cost analysis:
+    │                                      #   misses / false alarms per 100k flows,
+    │                                      #   crossover ratios, cost curves; backs
+    │                                      #   t:alarm-cost (E16-COST cell)
+    └── e15_feature_budget/                # round 2 — K ∈ {6,12,18,24} sensitivity
+                                           #   sweep (strongest LLM + RF, 5 seeds);
+                                           #   backs t:e15-feature-budget (E15-FB)
 ```
 
 ## Quickstart
@@ -240,14 +269,31 @@ three is a faster floor; two gives no meaningful CI.
 
 The five-seed re-runs that produce Section 5.3 of the paper are committed
 in full under `multiseed_runs/`, so **no re-run is required** to inspect
-the figure and tables they back. Coverage is the three CIC-IDS2017
-variants that Section 5.3 reports:
+the figure and tables they back. Coverage is the entire Axis-1 panel —
+all ten dataset–variant cells the revised Section 5.3 reports:
 
 | Variant directory                    | PCA | Class mapping | Foundation models present | Paper section  |
 |--------------------------------------|-----|---------------|----------------------------|----------------|
 | `multiseed_runs/cic_ids2017_V1/`     |  no |  no (15 cls)  | RF, TabPFN, TabPFN 2.5, TabICL, TabSTAR | §5.3.1 + §5.3.2 + §5.3.3 |
 | `multiseed_runs/cic_ids2017_V2/`     |  yes |  no (15 cls) | RF, TabPFN, TabPFN 2.5, TabICL, TabSTAR | §5.3.1 + §5.3.2 + §5.3.3 |
-| `multiseed_runs/cic_ids2017_V3/`     |  no |  yes (9 cls) | RF, TabPFN, TabPFN 2.5, TabICL          | §5.3.1 + §5.3.2 (TabSTAR not multi-seed on V3 for compute) |
+| `multiseed_runs/cic_ids2017_V3/`     |  no |  yes (9 cls) | RF, TabPFN, TabPFN 2.5, TabICL, TabSTAR | §5.3.1 + §5.3.2 + §5.3.3 |
+| `multiseed_runs/cic_ids2017_V4/`     |  yes |  yes (9 cls) | RF, TabPFN, TabPFN 2.5, TabICL, TabSTAR | §5.3.1 + §5.3.2 + §5.3.3 |
+| `multiseed_runs/n_baiot_V1/`         |  no |  no (11 cls)  | RF, TabPFN, TabPFN 2.5, TabICL, TabSTAR | §5.3.6 (extension) |
+| `multiseed_runs/n_baiot_V2/`         |  yes |  no (11 cls) | RF, TabPFN, TabPFN 2.5, TabICL, TabSTAR | §5.3.6 (extension) |
+| `multiseed_runs/n_baiot_V3/`         |  no |  yes (3 cls) | RF, TabPFN, TabPFN 2.5, TabICL, TabSTAR | §5.3.6 (extension) |
+| `multiseed_runs/n_baiot_V4/`         |  yes |  yes (3 cls) | RF, TabPFN, TabPFN 2.5, TabICL, TabSTAR | §5.3.6 (extension) |
+| `multiseed_runs/cic_unsw_V1/`        |  no |  —            | RF, TabPFN, TabPFN 2.5, TabICL, TabSTAR | §5.3.6 (extension) |
+| `multiseed_runs/cic_unsw_V2/`        |  yes |  —           | RF, TabPFN, TabPFN 2.5, TabICL, TabSTAR | §5.3.6 (extension) |
+
+The four CIC-IDS2017 cells were produced by
+`multiseed_validation_example.ipynb`; the six N-BaIoT and CIC-UNSW cells
+by the headless twin `multiseed_validation.py` (same
+`src.pipelines.multiseed` machinery, incremental per-model saving, e.g.
+`python multiseed_validation.py --dataset n_baiot`). The extension cells
+back the accuracy–coverage-inversion replication on CIC-UNSW and its
+scope condition on N-BaIoT (Tables `t:multiseed-extension` and
+`t:unsw-rareclass`), aggregated by the A1-AGG cell of
+`r2_additional_experiments.ipynb`.
 
 Each per-model summary JSON holds the five-seed mean, the
 5,000-resample bootstrap 95 % CI on accuracy / macro-F1, and per-class
@@ -357,7 +403,9 @@ directory under `multiseed_runs/`.
 |-----------------------------------------------------------------|-------------------------------------------------------------------------------------------------------------|
 | `t:multiseed-headline` row, V1 (per model)                      | `multiseed_runs/cic_ids2017_V1/<model>_summary.json`                                                        |
 | `t:multiseed-headline` row, V2 (per model)                      | `multiseed_runs/cic_ids2017_V2/<model>_summary.json`                                                        |
-| `t:multiseed-headline` row, V3 (per model, no TabSTAR)          | `multiseed_runs/cic_ids2017_V3/<model>_summary.json`                                                        |
+| `t:multiseed-headline` row, V3 (per model)                      | `multiseed_runs/cic_ids2017_V3/<model>_summary.json`                                                        |
+| `t:multiseed-headline` row, V4 (per model)                      | `multiseed_runs/cic_ids2017_V4/<model>_summary.json`                                                        |
+| `t:multiseed-tabpfn-perclass-v4` (per-class TabPFN 2.5 − TabPFN, V4) | `multiseed_v2_analysis.ipynb` → `table_tabpfn_delta_v4.tex`                                            |
 | `t:multiseed-tabpfn-perclass-full` (per-class TabPFN 2.5 − TabPFN, all variants) | `multiseed_v2_analysis.ipynb` → `table_tabpfn_delta.tex`                              |
 | `fgr:multiseed-ci-bars` (accuracy + macro-F1 panels)            | `multiseed_v2_analysis.ipynb` → `multiseed_ci_bars.{pdf,png}`                                               |
 | TabSTAR rare-class CIs cited in §5.3.3                          | `multiseed_runs/cic_ids2017_V1/tabstar_summary.json` (Heartbleed, Infiltration, Web Attack subclasses)      |
@@ -482,7 +530,23 @@ table).
 | `e13_cross_dataset/`      | CIC-IDS2017 → CSE-CIC-IDS2018 transfer (both collapse; RF transfers better) |
 | `e14_rareclass_deepdive/` | confusion leakage + standardised centroid distance (DoS/DDoS vs Web-Attack/BENIGN) |
 
-> **Credentials.** Neither notebook hardcodes any key. Set `NEBIUS_API_KEY`,
+**Round 2 — multi-seed extension, cost analysis, feature-budget sweep**
+(`r2_additional_experiments.ipynb` → `data_v8/multiseed_extension/`,
+`data_v8/e16_cost/`, `data_v8/e15_feature_budget/`). Three cells, one per
+round-2 reviewer request; the first two are offline (pure pandas/scipy on
+the committed CSVs), only E15-FB calls the Nebius API.
+
+| Cell | Reads | Writes | Backs |
+|------|-------|--------|-------|
+| A1-AGG   | `multiseed_runs/{n_baiot,cic_unsw}_V*/` | `data_v8/multiseed_extension/` | `t:multiseed-extension`, `t:unsw-rareclass` — inversion replicates on CIC-UNSW (+16.8 pp macro-F1, all comparisons Bonferroni-significant), absent on attack-dominated N-BaIoT |
+| E16-COST | `data_v8/rf_control_and_xgb/cic_ids2017_V1/`, `data_v8/reviewer_response/e14_rareclass_deepdive/` | `data_v8/e16_cost/` | `t:alarm-cost` — the accuracy leader is the expected-cost leader only if a missed attack costs < ~1/25 of a false alarm (ρ* = 0.04 vs XGBoost) |
+| E15-FB   | Nebius API + Kaggle CIC-IDS2017 | `e15_feature_budget/` (bundled copy: `data_v8/e15_feature_budget/`) | `t:e15-feature-budget` — LLM-vs-RF parity invariant to K ∈ {6,12,18,24} (p_Bonf ≥ 0.997 at every K; K = 12 reproduces the headline cell) |
+
+All outputs are committed, so no cell needs to be re-run to inspect any
+round-2 table; the raw per-seed audit trail for E15 is
+`data_v8/e15_feature_budget/e15_raw.csv`.
+
+> **Credentials.** No notebook hardcodes any key. Set `NEBIUS_API_KEY`,
 > `KAGGLE_USERNAME`, and `KAGGLE_KEY` via Colab Secrets or environment variables
 > (see [Secrets](#secrets)) before running.
 
@@ -846,5 +910,5 @@ Two notebooks form a producer / consumer pair around `multiseed_runs/`:
 | `multiseed_v2_analysis.ipynb`        | consumer | `multiseed_runs/`                | `multiseed_ci_bars.{pdf,png}`, `table_tabpfn_delta.tex`, inline pandas tables |
 
 The bundled `multiseed_runs/` directory was produced by the first
-notebook for the three CIC-IDS2017 variants (V1, V2, V3) reported in
+notebook for all four CIC-IDS2017 variants (V1–V4) reported in
 Section 5.3 of the paper.
