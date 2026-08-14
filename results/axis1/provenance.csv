@@ -1,0 +1,5 @@
+cell,canonical_source,derived_release,rows,classes,full_test_rows,raw_source_sha256,notes
+cic_ids2017_V1,"Sharafaldin, Lashkari and Ghorbani (2018)","cleaned CIC-IDS2017 table; native 15-class taxonomy",2522362,15,756709,,"Raw benchmark table is not redistributed; checksum was not emitted by the supplied run."
+cic_ids2017_V3,"Sharafaldin, Lashkari and Ghorbani (2018)","same cleaned CIC-IDS2017 table; grouped 9-class taxonomy",2522362,9,756709,,"Raw benchmark table is not redistributed; checksum was not emitted by the supplied run."
+cic_unsw_V1,"Moustafa and Slay (2015)","CICFlowMeter re-derivation of UNSW-NB15; cleaned numeric features",3540241,10,1062073,,"Transport mirror and raw-source checksum were not emitted by the supplied run."
+cic_unsw_V2,"Moustafa and Slay (2015)","same CICFlowMeter re-derivation; half-dimension PCA fitted within budget",3540241,10,1062073,,"Transport mirror and raw-source checksum were not emitted by the supplied run."

@@ -1,0 +1,12 @@
+{
+  "status": "PASS",
+  "strict_axis1_records": 320,
+  "strict_axis1_summary_rows": 32,
+  "pairwise_direction_counts": {
+    "FM all 10": 40,
+    "classical all 10": 4,
+    "mixed": 4
+  },
+  "axis2_llm_cost_usd": 218.3418699,
+  "raw_source_checksums_available": false
+}

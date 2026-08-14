@@ -1,0 +1,70 @@
+{
+  "axis1_core_records": 320,
+  "axis1_core_cells": [
+    "cic_ids2017_V1",
+    "cic_ids2017_V3",
+    "cic_unsw_V1",
+    "cic_unsw_V2"
+  ],
+  "rank_correlations": {
+    "cic_ids2017_V1": -0.4523809523809524,
+    "cic_ids2017_V3": -0.4523809523809524,
+    "cic_unsw_V1": -0.4285714285714286,
+    "cic_unsw_V2": -0.4761904761904762
+  },
+  "pairwise_counts": {
+    "FM all 10": 40,
+    "classical all 10": 4,
+    "mixed": 4
+  },
+  "axis2_total_cost_usd": 218.3418699,
+  "axis2_models": [
+    "RandomForest",
+    "Kimi-K3",
+    "GLM-5.2",
+    "MiniMax-M3",
+    "Qwen3.5-397B-A17B",
+    "DeepSeek-V4-Pro",
+    "Nemotron-3-Ultra-550b-a55b"
+  ],
+  "rare_classes": {
+    "cic_ids2017_V1": [
+      "Bot",
+      "DoS GoldenEye",
+      "DoS Slowhttptest",
+      "DoS slowloris",
+      "FTP-Patator",
+      "Heartbleed",
+      "Infiltration",
+      "SSH-Patator",
+      "Web Attack  Brute Force",
+      "Web Attack  Sql Injection",
+      "Web Attack  XSS"
+    ],
+    "cic_ids2017_V3": [
+      "Bot",
+      "Brute Force",
+      "Heartbleed",
+      "Infiltration",
+      "Web Attack"
+    ],
+    "cic_unsw_V1": [
+      "Analysis",
+      "Backdoor",
+      "DoS",
+      "Generic",
+      "Reconnaissance",
+      "Shellcode",
+      "Worms"
+    ],
+    "cic_unsw_V2": [
+      "Analysis",
+      "Backdoor",
+      "DoS",
+      "Generic",
+      "Reconnaissance",
+      "Shellcode",
+      "Worms"
+    ]
+  }
+}

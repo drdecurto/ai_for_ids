@@ -1,0 +1,12 @@
+model,config,parsed,of,finish_reason,preview,error
+GLM-5.2,plain_512,0,3,length,,
+GLM-5.2,plain_4096,3,3,stop,BENIGN,
+DeepSeek-V4-Pro,plain_512,3,3,stop,BENIGN,
+Kimi-K3,plain_512,0,3,length,,
+Kimi-K3,plain_4096,3,3,stop,BENIGN,
+MiniMax-M3,plain_512,1,3,stop,Port Scan,
+MiniMax-M3,plain_4096,3,3,stop,BENIGN,
+Qwen3.5-397B-A17B,plain_512,0,3,length,,
+Qwen3.5-397B-A17B,plain_4096,1,3,length,BENIGN,
+Qwen3.5-397B-A17B,nothink_template,3,3,stop,BENIGN,
+Nemotron-3-Ultra-550b-a55b,plain_512,3,3,length,The user wants me to classify a network intrusion detection sample. They've provided a list of training exampl,

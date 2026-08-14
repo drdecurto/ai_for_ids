@@ -1,0 +1,102 @@
+{
+  "status": "PASS",
+  "checks": [
+    {
+      "name": "Strict Axis-1 panel",
+      "status": "PASS",
+      "details": "320 records; 4 cells x 8 configurations x 10 seeds; one parent test hash per cell"
+    },
+    {
+      "name": "Table 3 rare-class definitions",
+      "status": "PASS",
+      "details": "11, 5, 7 and 7 classes under the predeclared 0.5% threshold"
+    },
+    {
+      "name": "Table 2 dataset cells",
+      "status": "PASS",
+      "details": "Corrected CIC held-out benign share = 83.1%; all row, class and held-out counts verified"
+    },
+    {
+      "name": "Table 7 rank inversion",
+      "status": "PASS",
+      "details": "All four Spearman coefficients and top-three/bottom-three memberships recomputed"
+    },
+    {
+      "name": "Table 5 cap validation",
+      "status": "PASS",
+      "details": "156 matching-hash model-seed rows; all means and maxima verified"
+    },
+    {
+      "name": "Table 8 size-distribution factorial",
+      "status": "PASS",
+      "details": "Four arm means, bootstrap intervals, exact sign-flip tests and Holm values verified"
+    },
+    {
+      "name": "Table 9 selected paired effects",
+      "status": "PASS",
+      "details": "Complete 48-comparison record independently recomputed: 40/4/4"
+    },
+    {
+      "name": "Table 10 ManyClass sensitivity",
+      "status": "PASS",
+      "details": "All 12 runs and the 0.00610 rare-recall range verified"
+    },
+    {
+      "name": "Table 11 stability and efficiency",
+      "status": "PASS",
+      "details": "All displayed means, standard deviations, fitting rows and timings verified"
+    },
+    {
+      "name": "Table 12 operating points",
+      "status": "PASS",
+      "details": "All category counts and seed-averaged alerts-per-true-positive values verified"
+    },
+    {
+      "name": "Table 13 TabSTAR name control",
+      "status": "PASS",
+      "details": "All three paired effects, intervals and exact tests verified"
+    },
+    {
+      "name": "Table 14 cost crossovers",
+      "status": "PASS",
+      "details": "560 seed-level cost comparisons and all selected medians independently reconstructed"
+    },
+    {
+      "name": "Table 15 Axis-2 panel",
+      "status": "PASS",
+      "details": "All 60 raw LLM seed records rescored over the closed nine-label set; six adjusted paired tests verified"
+    },
+    {
+      "name": "Table 6 Axis-2 calibration",
+      "status": "PASS",
+      "details": "All six frozen configurations pass 5/5 clean development probes"
+    },
+    {
+      "name": "Table 16 Axis-2 selector audit",
+      "status": "PASS",
+      "details": "30 Kimi-K3 runs; 387 identical evaluation rows per seed across selector regimes"
+    }
+  ],
+  "headline": {
+    "axis1_records": 320,
+    "rank_correlations": {
+      "cic_ids2017_V1": -0.4523809523809524,
+      "cic_ids2017_V3": -0.4523809523809524,
+      "cic_unsw_V1": -0.4285714285714286,
+      "cic_unsw_V2": -0.4761904761904762
+    },
+    "pairwise_counts": {
+      "FM all 10": 40,
+      "classical all 10": 4,
+      "mixed": 4
+    },
+    "factorial_effects": {
+      "balance at small": 0.509131249220103,
+      "balance at large": 0.2599285291258865,
+      "size at natural": 0.24213834585430946,
+      "size at balanced": -0.007064374239907023
+    },
+    "axis2_total_cost_usd": 218.3418699,
+    "cic_ids2017_heldout_benign_share": 0.831158344885558
+  }
+}

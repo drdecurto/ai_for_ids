@@ -1,0 +1,5 @@
+cell,cell_label,spearman,top3_accuracy,bottom3_recall,same_three
+cic_ids2017_V1,CIC-IDS2017 V1,-0.4523809523809524,xgb_full; rf_strong_full; rf_pruned_full,rf_pruned_full; rf_strong_full; xgb_full,True
+cic_ids2017_V3,CIC-IDS2017 V3,-0.4523809523809524,xgb_full; rf_strong_full; rf_pruned_full,rf_pruned_full; rf_strong_full; xgb_full,True
+cic_unsw_V1,CIC-UNSW-NB15 V1,-0.4285714285714286,xgb_full; rf_strong_full; rf_pruned_full,rf_pruned_full; rf_strong_full; xgb_full,True
+cic_unsw_V2,CIC-UNSW-NB15 V2,-0.4761904761904762,rf_strong_full; xgb_full; rf_pruned_full,rf_pruned_full; rf_strong_full; xgb_full,True

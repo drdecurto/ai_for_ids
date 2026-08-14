@@ -1,0 +1,12 @@
+-r requirements.txt
+xgboost>=2.0
+openai>=1.30
+kagglehub>=0.3
+tqdm>=4.66
+pyarrow>=15
+torch>=2.2
+tabpfn>=2.0
+# TabICL and TabSTAR were installed from their project sources in the frozen
+# experiment notebooks because stable package names/versions were not available
+# across every run environment. Consult notebooks/experiments/ and pin the exact
+# commit used in any independent re-execution.

@@ -1,5 +1,0 @@
-setting,model,acc,macro_f1
-in-domain (source test),Qwen3-235B-A22B,0.8459214501510574,0.8399271008365521
-in-domain (source test),RandomForest,0.7734138972809668,0.7506679240161793
-cross-domain (->cse-cic-ids2018),Qwen3-235B-A22B,0.3,0.2664382043809478
-cross-domain (->cse-cic-ids2018),RandomForest,0.38285714285714284,0.3455123779028498
