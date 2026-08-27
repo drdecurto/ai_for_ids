@@ -1,0 +1,47 @@
+\begin{tabular}{@{}llrrl@{}}
+\toprule
+Cell & Model & Accuracy & Macro-$F_1$ & Rare-class recall \\
+\midrule
+CIC-IDS2017 V2 (PCA, 15 classes) & Pruned RF, full training partition & 0.9881 & 0.388 & 0.192 \\
+ & Pruned RF, balanced & 0.9321 & 0.498 & 0.732 \\
+ & Strong RF, balanced & 0.9652 & 0.564 & 0.791 \\
+ & XGBoost, full training partition & 0.9981 & 0.792 & 0.706 \\
+ & TabPFN & 0.9531 & 0.588 & n/a \\
+ & TabPFN 2.5 & 0.9773 & 0.606 & n/a \\
+ & TabICL & 0.9710 & 0.625 & n/a \\
+ & TabSTAR & 0.9150 & 0.488 & n/a \\
+\addlinespace
+CIC-IDS2017 V4 (PCA, 9 classes) & Pruned RF, full training partition & 0.9903 & 0.493 & 0.212 \\
+ & Pruned RF, balanced & 0.9520 & 0.542 & 0.831 \\
+ & Strong RF, balanced & 0.9689 & 0.581 & 0.857 \\
+ & XGBoost, full training partition & 0.9984 & 0.851 & 0.705 \\
+ & TabPFN & 0.9590 & 0.600 & n/a \\
+ & TabPFN 2.5 & 0.9808 & 0.630 & n/a \\
+ & TabICL & 0.9721 & 0.653 & n/a \\
+ & TabSTAR & 0.9387 & 0.557 & n/a \\
+\addlinespace
+N-BaIoT V1 (11 classes) & Pruned RF, full training partition & 0.9953 & 0.983 & n/a \\
+ & TabPFN & 0.9568 & 0.875 & n/a \\
+ & TabPFN 2.5 & 0.9497 & 0.866 & n/a \\
+ & TabICL & 0.9572 & 0.876 & n/a \\
+ & TabSTAR & 0.9907 & 0.987 & n/a \\
+\addlinespace
+N-BaIoT V2 (PCA, 11 classes) & Pruned RF, full training partition & 0.9212 & 0.919 & n/a \\
+ & TabPFN & 0.9537 & 0.871 & n/a \\
+ & TabPFN 2.5 & 0.9575 & 0.888 & n/a \\
+ & TabICL & 0.9545 & 0.873 & n/a \\
+ & TabSTAR & 0.9633 & 0.964 & n/a \\
+\addlinespace
+N-BaIoT V3 (grouped, 3 classes) & Pruned RF, full training partition & 0.9998 & 0.9997 & n/a \\
+ & TabPFN & 0.9997 & 0.9995 & n/a \\
+ & TabPFN 2.5 & 0.9997 & 0.9994 & n/a \\
+ & TabICL & 0.9996 & 0.9993 & n/a \\
+ & TabSTAR & 0.9991 & 0.9985 & n/a \\
+\addlinespace
+N-BaIoT V4 (PCA, grouped, 3 classes) & Pruned RF, full training partition & 0.9947 & 0.992 & n/a \\
+ & TabPFN & 0.9992 & 0.999 & n/a \\
+ & TabPFN 2.5 & 0.9993 & 0.999 & n/a \\
+ & TabICL & 0.9989 & 0.998 & n/a \\
+ & TabSTAR & 0.9979 & 0.997 & n/a \\
+\bottomrule
+\end{tabular}

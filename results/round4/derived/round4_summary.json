@@ -1,0 +1,381 @@
+{
+  "input_checks": {
+    "manyclass_rows": 40,
+    "unsw_factorial_rows": 40,
+    "axis2_datarich_rows": 40,
+    "axis2_datarich_perclass_rows": 360,
+    "axis2_second_variant_raw_records": 70,
+    "axis2_second_variant_complete": true
+  },
+  "threshold": {
+    "n_cell_thresholds": 16,
+    "all_negative": true,
+    "all_same_three": true,
+    "rho_min": -0.4761904761904762,
+    "rho_max": -0.4285714285714286
+  },
+  "factorial_rare_recall": [
+    {
+      "dataset": "CIC-IDS2017 V3",
+      "contrast": "balance at small budget",
+      "metric": "rare_recall",
+      "left": "small_balanced",
+      "right": "small_natural",
+      "mean_delta": 0.509131249220103,
+      "ci_lo": 0.49573553130549647,
+      "ci_hi": 0.5224000091231263,
+      "wins": 10,
+      "p_raw": 0.001953125,
+      "p_holm_4": 0.0078125
+    },
+    {
+      "dataset": "CIC-IDS2017 V3",
+      "contrast": "balance at large budget",
+      "metric": "rare_recall",
+      "left": "large_balanced",
+      "right": "large_natural",
+      "mean_delta": 0.2599285291258865,
+      "ci_lo": 0.19216187378881736,
+      "ci_hi": 0.32029690877999584,
+      "wins": 10,
+      "p_raw": 0.001953125,
+      "p_holm_4": 0.0078125
+    },
+    {
+      "dataset": "CIC-IDS2017 V3",
+      "contrast": "size under natural sampling",
+      "metric": "rare_recall",
+      "left": "large_natural",
+      "right": "small_natural",
+      "mean_delta": 0.24213834585430946,
+      "ci_lo": 0.18286111572891636,
+      "ci_hi": 0.3069461234932244,
+      "wins": 10,
+      "p_raw": 0.001953125,
+      "p_holm_4": 0.0078125
+    },
+    {
+      "dataset": "CIC-IDS2017 V3",
+      "contrast": "size under balanced sampling",
+      "metric": "rare_recall",
+      "left": "large_balanced",
+      "right": "small_balanced",
+      "mean_delta": -0.007064374239907023,
+      "ci_lo": -0.012720672357683182,
+      "ci_hi": -0.0018304232099603543,
+      "wins": 1,
+      "p_raw": 0.00390625,
+      "p_holm_4": 0.0078125
+    },
+    {
+      "dataset": "CIC-UNSW-NB15 V1",
+      "contrast": "balance at small budget",
+      "metric": "rare_recall",
+      "left": "small_balanced",
+      "right": "small_natural",
+      "mean_delta": 0.5791858496369546,
+      "ci_lo": 0.5633131427026029,
+      "ci_hi": 0.596971998315506,
+      "wins": 10,
+      "p_raw": 0.001953125,
+      "p_holm_4": 0.0078125
+    },
+    {
+      "dataset": "CIC-UNSW-NB15 V1",
+      "contrast": "balance at large budget",
+      "metric": "rare_recall",
+      "left": "large_balanced",
+      "right": "large_natural",
+      "mean_delta": 0.3195285794823816,
+      "ci_lo": 0.310961978414239,
+      "ci_hi": 0.3278333667978167,
+      "wins": 10,
+      "p_raw": 0.001953125,
+      "p_holm_4": 0.0078125
+    },
+    {
+      "dataset": "CIC-UNSW-NB15 V1",
+      "contrast": "size under natural sampling",
+      "metric": "rare_recall",
+      "left": "large_natural",
+      "right": "small_natural",
+      "mean_delta": 0.18628710069620774,
+      "ci_lo": 0.16748660667439044,
+      "ci_hi": 0.20430455541549528,
+      "wins": 10,
+      "p_raw": 0.001953125,
+      "p_holm_4": 0.0078125
+    },
+    {
+      "dataset": "CIC-UNSW-NB15 V1",
+      "contrast": "size under balanced sampling",
+      "metric": "rare_recall",
+      "left": "large_balanced",
+      "right": "small_balanced",
+      "mean_delta": -0.07337016945836525,
+      "ci_lo": -0.07952678431131062,
+      "ci_hi": -0.06741692608784226,
+      "wins": 0,
+      "p_raw": 0.001953125,
+      "p_holm_4": 0.0078125
+    }
+  ],
+  "manyclass": {
+    "spread": 0.003029947127971111,
+    "summary": [
+      {
+        "alphabet_size": 5,
+        "n_estimators_redundancy": 1,
+        "n": 10,
+        "accuracy": 0.9888737807727475,
+        "macro_f1": 0.71038970239489,
+        "rare_recall": 0.8624699590847079,
+        "rare_recall_sd": 0.0028947175691061565,
+        "ci_lo": 0.8608410693339164,
+        "ci_hi": 0.8642443579909708,
+        "fit_s": 0.04649627208709712,
+        "spread_from_min": 0.0027643493768667593
+      },
+      {
+        "alphabet_size": 5,
+        "n_estimators_redundancy": 4,
+        "n": 10,
+        "accuracy": 0.9885340291653026,
+        "macro_f1": 0.7078463878286997,
+        "rare_recall": 0.862544460165533,
+        "rare_recall_sd": 0.00588826864726645,
+        "ci_lo": 0.8600291614350519,
+        "ci_hi": 0.8664885910271929,
+        "fit_s": 0.05034754276275629,
+        "spread_from_min": 0.0028388504576918328
+      },
+      {
+        "alphabet_size": 10,
+        "n_estimators_redundancy": 1,
+        "n": 10,
+        "accuracy": 0.9879265946760827,
+        "macro_f1": 0.7166534591346182,
+        "rare_recall": 0.8627355568358123,
+        "rare_recall_sd": 0.0065517597724262236,
+        "ci_lo": 0.8597982242953492,
+        "ci_hi": 0.8670820875174953,
+        "fit_s": 0.04405312538146968,
+        "spread_from_min": 0.003029947127971111
+      },
+      {
+        "alphabet_size": 10,
+        "n_estimators_redundancy": 4,
+        "n": 10,
+        "accuracy": 0.9883382565380389,
+        "macro_f1": 0.7110098072370856,
+        "rare_recall": 0.8597056097078412,
+        "rare_recall_sd": 0.0007604643188427047,
+        "ci_lo": 0.8592364697563397,
+        "ci_hi": 0.8601186648376666,
+        "fit_s": 0.049991369247436496,
+        "spread_from_min": 0.0
+      }
+    ],
+    "paired": [
+      {
+        "alphabet_size": 5,
+        "n_estimators_redundancy": 4,
+        "mean_delta_vs_a5r1": 7.450108082515116e-05,
+        "ci_lo": -0.00305949612925102,
+        "ci_hi": 0.003929641489337472,
+        "wins": 3,
+        "p_raw": 0.98046875,
+        "p_holm_3": 1.0
+      },
+      {
+        "alphabet_size": 10,
+        "n_estimators_redundancy": 1,
+        "mean_delta_vs_a5r1": 0.0002655977511042962,
+        "ci_lo": -0.0027958085708528987,
+        "ci_hi": 0.004632068084933402,
+        "wins": 5,
+        "p_raw": 0.951171875,
+        "p_holm_3": 1.0
+      },
+      {
+        "alphabet_size": 10,
+        "n_estimators_redundancy": 4,
+        "mean_delta_vs_a5r1": -0.002764349376866604,
+        "ci_lo": -0.004669043228194036,
+        "ci_hi": -0.0010006761211052485,
+        "wins": 1,
+        "p_raw": 0.0234375,
+        "p_holm_3": 0.0703125
+      }
+    ]
+  },
+  "axis2_datarich": {
+    "summary": [
+      {
+        "reference": "development-rich",
+        "learner": "XGBoost",
+        "n_fit": 2846.0,
+        "n_fit_unique": 2846.0,
+        "n_eval": 246.0,
+        "accuracy": 0.9211382113821138,
+        "macro_f1": 0.9189766895195495,
+        "fit_s": 2.680373954772949
+      },
+      {
+        "reference": "development-rich",
+        "learner": "strong RF",
+        "n_fit": 2846.0,
+        "n_fit_unique": 2846.0,
+        "n_eval": 246.0,
+        "accuracy": 0.9117886178861788,
+        "macro_f1": 0.911166765910564,
+        "fit_s": 0.9877734184265137
+      },
+      {
+        "reference": "large natural",
+        "learner": "XGBoost",
+        "n_fit": 400045.0,
+        "n_fit_unique": 400045.0,
+        "n_eval": 246.0,
+        "accuracy": 0.709349593495935,
+        "macro_f1": 0.7065773147683804,
+        "fit_s": 151.1269072532654
+      },
+      {
+        "reference": "large natural",
+        "learner": "strong RF",
+        "n_fit": 400045.0,
+        "n_fit_unique": 400045.0,
+        "n_eval": 246.0,
+        "accuracy": 0.767479674796748,
+        "macro_f1": 0.774496297828773,
+        "fit_s": 175.0657980442047
+      }
+    ],
+    "comparisons": [
+      {
+        "reference": "development-rich",
+        "learner": "XGBoost",
+        "comparator": "matched 45-row RF",
+        "mean_delta_macro_f1": 0.11346413609129306,
+        "ci_lo": 0.08819562412388682,
+        "ci_hi": 0.14834661406004826,
+        "wins": 10,
+        "p_raw": 0.001953125,
+        "p_holm_8": 0.015625
+      },
+      {
+        "reference": "development-rich",
+        "learner": "XGBoost",
+        "comparator": "Kimi-K3",
+        "mean_delta_macro_f1": 0.08543076153020587,
+        "ci_lo": 0.06319654012846154,
+        "ci_hi": 0.11066270851057393,
+        "wins": 10,
+        "p_raw": 0.001953125,
+        "p_holm_8": 0.015625
+      },
+      {
+        "reference": "development-rich",
+        "learner": "strong RF",
+        "comparator": "matched 45-row RF",
+        "mean_delta_macro_f1": 0.10565421248230766,
+        "ci_lo": 0.07937793096597229,
+        "ci_hi": 0.13158919385866238,
+        "wins": 10,
+        "p_raw": 0.001953125,
+        "p_holm_8": 0.015625
+      },
+      {
+        "reference": "development-rich",
+        "learner": "strong RF",
+        "comparator": "Kimi-K3",
+        "mean_delta_macro_f1": 0.07762083792122046,
+        "ci_lo": 0.051919961953867,
+        "ci_hi": 0.10558726555590026,
+        "wins": 10,
+        "p_raw": 0.001953125,
+        "p_holm_8": 0.015625
+      },
+      {
+        "reference": "large natural",
+        "learner": "XGBoost",
+        "comparator": "matched 45-row RF",
+        "mean_delta_macro_f1": -0.09893523865987601,
+        "ci_lo": -0.1258127495587746,
+        "ci_hi": -0.07177325921301854,
+        "wins": 0,
+        "p_raw": 0.001953125,
+        "p_holm_8": 0.015625
+      },
+      {
+        "reference": "large natural",
+        "learner": "XGBoost",
+        "comparator": "Kimi-K3",
+        "mean_delta_macro_f1": -0.12696861322096317,
+        "ci_lo": -0.15007303542979342,
+        "ci_hi": -0.1045301827620721,
+        "wins": 0,
+        "p_raw": 0.001953125,
+        "p_holm_8": 0.015625
+      },
+      {
+        "reference": "large natural",
+        "learner": "strong RF",
+        "comparator": "matched 45-row RF",
+        "mean_delta_macro_f1": -0.031016255599483344,
+        "ci_lo": -0.05611876670611122,
+        "ci_hi": -0.004067669251363981,
+        "wins": 2,
+        "p_raw": 0.064453125,
+        "p_holm_8": 0.064453125
+      },
+      {
+        "reference": "large natural",
+        "learner": "strong RF",
+        "comparator": "Kimi-K3",
+        "mean_delta_macro_f1": -0.059049630160570535,
+        "ci_lo": -0.08070110944714856,
+        "ci_hi": -0.036437571921172404,
+        "wins": 1,
+        "p_raw": 0.00390625,
+        "p_holm_8": 0.015625
+      }
+    ],
+    "matched_anchor_macro_f1": 0.8055125534282566,
+    "kimi_macro_f1": 0.8335459279893437
+  },
+  "current_axis2_total_cost": 218.3418699,
+  "axis2_second_variant": {
+    "status": "PASS",
+    "dataset": "CIC-UNSW-NB15 V1",
+    "n_models": 6,
+    "n_seeds": 10,
+    "n_eval_per_seed": 300,
+    "n_raw_records": 70,
+    "stage_a_all_clean": true,
+    "anchor_accuracy": 0.453,
+    "anchor_macro_f1": 0.4332027742226584,
+    "kimi_macro_f1": 0.47318489242454714,
+    "kimi_delta": 0.03998211820188868,
+    "kimi_p_adjusted": 0.10546875,
+    "glm_delta": 0.03282746585398405,
+    "glm_p_adjusted": 0.234375,
+    "qwen_accuracy": 0.41900000000000004,
+    "qwen_macro_f1": 0.39579892193686994,
+    "qwen_delta": -0.03740385228578845,
+    "qwen_p_adjusted": 0.22265625,
+    "qwen_wins": 2,
+    "qwen_parse_rate": 1.0,
+    "qwen_unparsed": 0,
+    "spearman_hosted_ordering_vs_cic": 1.0,
+    "total_cost_usd": 293.68404154999996
+  },
+  "combined_axis2_total_cost": 512.02591145,
+  "core_count": {
+    "configurations": 8,
+    "cells": 4,
+    "seeds": 10,
+    "seed_level_fits": 320
+  }
+}

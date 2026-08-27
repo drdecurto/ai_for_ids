@@ -1,0 +1,10 @@
+\begin{tabular}{@{}p{0.18\textwidth}p{0.29\textwidth}p{0.43\textwidth}@{}}
+\toprule
+Question & Screening design & Result \\
+\midrule
+In-context rows & $k\in\{1,2,3,5,8,12\}$, one seed, grouped CIC-IDS2017 & For every model and the RF anchor, accuracy peaked at $k=12$ and rose monotonically from $k=3$; at $k=12$, the best LLM (0.866) and RF (0.864) differed by 0.002. \\
+Feature budget & $K\in\{6,12,18,24\}$, five seeds, strongest screening LLM vs RF & Both improved with $K$; the LLM--RF gap stayed within $[-0.021,+0.009]$ and no comparison was significant after correction. \\
+Within-family scaling & Seven screening configurations & Llama 8B$\rightarrow$70B added 0.10 mean accuracy; Hermes 70B$\rightarrow$405B added 0.01 and was not uniformly positive. \\
+Cost & Grouped CIC-IDS2017, three-vote prompting, prices at run time & USD/1,000 rows ranged from 0.37 to 18.72; the most accurate model reached 0.773 at USD 4.73/1,000 rows. \\
+\bottomrule
+\end{tabular}

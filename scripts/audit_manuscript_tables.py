@@ -22,6 +22,9 @@ ROOT = Path(__file__).resolve().parents[1]
 AX1 = ROOT / "results" / "axis1"
 AX2 = ROOT / "results" / "axis2"
 SENS = ROOT / "results" / "sensitivity"
+R4RAW = ROOT / "results" / "round4" / "raw"
+R4DER = ROOT / "results" / "round4" / "derived"
+R4GEN = ROOT / "results" / "round4" / "generated"
 OUT = ROOT / "results" / "derived"
 MANUSCRIPT_CANDIDATES = [
     ROOT.parent / "manuscript" / "manuscript_content.tex",
@@ -334,9 +337,9 @@ for keys, row in many_summary.set_index(["alphabet_size", "n_estimators_redundan
     rel = released_many.set_index(["alphabet_size", "n_estimators_redundancy"]).loc[keys]
     for col in ["accuracy", "macro_f1", "rare_recall", "rare_recall_sd"]:
         close(float(row[col]), float(rel[col]))
-close(float(many_summary.rare_recall.max() - many_summary.rare_recall.min()), 0.0060951996339612124)
-assert_tex_contains("table_manyclass.tex", ["0.8641", "0.8660", "0.8630", "0.8599"])
-record("Table 10 ManyClass sensitivity", "All 12 runs and the 0.00610 rare-recall range verified")
+close(float(many_summary.rare_recall.max() - many_summary.rare_recall.min()), 0.003029947127971111)
+assert_tex_contains("table_manyclass.tex", ["0.8625", "0.8627", "0.8597", "0.0008"])
+record("Table 10 ManyClass sensitivity", "All 40 runs and the 0.00303 rare-recall range verified")
 
 released_stability = pd.read_csv(OUT / "axis1_core_summary.csv")
 for cell in CELLS:
@@ -519,7 +522,78 @@ close(float(rf.accuracy.mean()), float(a2_rel.loc["RandomForest", "accuracy"]))
 close(float(rf.macro_f1.mean()), float(a2_rel.loc["RandomForest", "macro_f1_closed"]))
 close(float(a2_calc.usd.sum()), 218.3418699)
 assert_tex_contains("table_axis2_summary.tex", ["0.818 & 0.834", "+0.028 & 0.1172", "93.52"])
-record("Table 15 Axis-2 panel", "All 60 raw LLM seed records rescored over the closed nine-label set; six adjusted paired tests verified")
+record("Table 23 grouped-CIC Axis-2 panel", "All 60 raw LLM seed records rescored over the closed nine-label set; six adjusted paired tests verified")
+
+# -------------------------------------------------------------------------
+# Completed second Axis-2 source: CIC-UNSW-NB15 V1.
+# -------------------------------------------------------------------------
+second_dir = R4RAW / "axis2_second_variant"
+second_raw = read_jsonl(second_dir / "raw_generations.jsonl")
+second_ledger = pd.read_csv(second_dir / "results.csv")
+second_stage = pd.read_csv(second_dir / "stage_a_probe.csv")
+assert len(second_raw) == len(second_ledger) == 70
+assert set(second_ledger.seed.astype(int)) == set(range(10))
+assert len(second_stage) == 6
+assert (second_stage.parsed.astype(int) == 5).all()
+assert (second_stage.clean.astype(int) == 5).all()
+
+second_rows = []
+for r in second_raw:
+    y = np.asarray(r["y_true"], dtype=str)
+    pred = np.asarray([v if v is not None else "__unparsed__" for v in r["y_pred"]], dtype=str)
+    labels = sorted(set(y))
+    assert len(y) == 300 and len(labels) == 10
+    second_rows.append({
+        "seed": int(r["seed"]), "model": r["model"],
+        "accuracy": accuracy_score(y, pred),
+        "macro_f1_closed": f1_score(y, pred, labels=labels, average="macro", zero_division=0),
+        "parse_rate": np.mean([v is not None for v in r["y_pred"]]),
+        "unparsed": sum(v is None for v in r["y_pred"]),
+    })
+second_seed = pd.DataFrame(second_rows)
+ledger_cmp = second_seed.merge(
+    second_ledger[["seed", "model", "accuracy", "macro_f1", "parse_rate"]],
+    on=["seed", "model"], suffixes=("_raw", "_ledger"), validate="one_to_one"
+)
+for metric in ["accuracy", "parse_rate"]:
+    assert np.allclose(ledger_cmp[f"{metric}_raw"], ledger_cmp[f"{metric}_ledger"], atol=1e-12, rtol=0)
+assert np.allclose(ledger_cmp["macro_f1_closed"], ledger_cmp["macro_f1"], atol=1e-12, rtol=0)
+
+second_rel = pd.read_csv(R4DER / "axis2_second_variant_summary.csv").set_index("model")
+second_rf = second_seed[second_seed.model == "RandomForest"].set_index("seed")
+for model, g in second_seed.groupby("model"):
+    gs = g.set_index("seed")
+    rel = second_rel.loc[model]
+    close(float(gs.accuracy.mean()), float(rel.accuracy))
+    close(float(gs.macro_f1_closed.mean()), float(rel.macro_f1_closed))
+    close(float(gs.parse_rate.mean()), float(rel.parse_rate))
+    assert int(gs.unparsed.sum()) == int(rel.unparsed)
+    if model != "RandomForest":
+        d = gs.loc[second_rf.index, "macro_f1_closed"].to_numpy() - second_rf.macro_f1_closed.to_numpy()
+        lo, hi = bootstrap_ci(d, seed=0)
+        close(float(d.mean()), float(rel.mean_delta))
+        close(lo, float(rel.ci_lo))
+        close(hi, float(rel.ci_hi))
+        close(signflip(d), float(rel.p_raw))
+        close(min(1.0, 6 * signflip(d)), float(rel.p_bonferroni_6))
+        assert int((d > 0).sum()) == int(rel.wins)
+
+second_cost = float(second_rel.loc[second_rel.index != "RandomForest", "usd"].sum())
+close(second_cost, 293.68404155)
+close(float(a2_calc.usd.sum()) + second_cost, 512.02591145)
+main_order = a2_rel.loc[["Kimi-K3", "GLM-5.2", "MiniMax-M3", "Qwen3.5-397B-A17B", "DeepSeek-V4-Pro", "Nemotron-3-Ultra-550b-a55b"], "macro_f1_closed"]
+second_order = second_rel.loc[main_order.index, "macro_f1_closed"]
+close(float(main_order.corr(second_order, method="spearman")), 1.0)
+close(float(second_rel.loc["Qwen3.5-397B-A17B", "accuracy"]), 0.419)
+close(float(second_rel.loc["Qwen3.5-397B-A17B", "macro_f1_closed"]), 0.39579892193686994)
+close(float(second_rel.loc["Qwen3.5-397B-A17B", "mean_delta"]), -0.03740385228578844)
+close(float(second_rel.loc["Qwen3.5-397B-A17B", "p_bonferroni_6"]), 0.22265625)
+close(float(second_rel.loc["Qwen3.5-397B-A17B", "parse_rate"]), 1.0)
+assert int(second_rel.loc["Qwen3.5-397B-A17B", "unparsed"]) == 0
+combined_table = (R4GEN / "table_axis2_two_variants_round4.tex").read_text()
+for literal in ["0.489/0.473", "+0.040", "0.1055", "0.419/0.396", "-0.037", "0.2227", "5.13/5.51", "38.01/43.86"]:
+    assert literal in combined_table, literal
+record("Table 23 second Axis-2 source", "70 raw records independently rescored; all scheduled model-seed jobs complete, 300 rows per seed, six paired tests and costs verified")
 
 # -------------------------------------------------------------------------
 # Axis-2 calibration and feature-selection audit.
@@ -572,7 +646,7 @@ if MANUSCRIPT.exists():
     for literal in [
         "$83.1\\%$", "$0.831$", "$4\\times8\\times10=320$", "$+0.509$",
         "$+0.260$", "$+0.242$", "$-0.007$", "2\\times6\\times4=48",
-        "\\$218.34", "$p_{\\mathrm{adj}}=0.117$",
+        "$218.34$", "$293.68$", "$512.03$", "$p_{\\mathrm{adj}}=0.117$",
     ]:
         assert literal in text, literal
     record("Manuscript numerical literals", "Headline numbers agree with the independently recomputed tables; no appendices or harsh disclaimer phrasing")
@@ -585,7 +659,10 @@ report = {
         "rank_correlations": rank_expected,
         "pairwise_counts": {"FM all 10": 40, "classical all 10": 4, "mixed": 4},
         "factorial_effects": {r["contrast"]: float(r["mean_delta"]) for r in computed},
-        "axis2_total_cost_usd": float(a2_calc.usd.sum()),
+        "axis2_grouped_cic_cost_usd": float(a2_calc.usd.sum()),
+        "axis2_cic_unsw_cost_usd": second_cost,
+        "axis2_combined_cost_usd": float(a2_calc.usd.sum()) + second_cost,
+        "axis2_cross_variant_spearman": float(main_order.corr(second_order, method="spearman")),
         "cic_ids2017_heldout_benign_share": float(support_by_cell["cic_ids2017_V1"][benign["cic_ids2017_V1"]] / support_by_cell["cic_ids2017_V1"].sum()),
     },
 }

@@ -1,0 +1,11 @@
+\begin{tabular}{@{}lrrrrrr@{}}
+\toprule
+Reference & Fitting rows & Accuracy & Macro-$F_1$ & $\Delta F_1$ vs.\ anchor & Wins & $p$ \\
+\midrule
+Random Forest anchor (in-context rows) & 45 & 0.804 & 0.806 & -- & -- & -- \\
+Strong RF, in-context $\cup$ development & 2,846 & 0.912 & 0.911 & +0.106 & 10/10 & 0.0020 \\
+XGBoost, in-context $\cup$ development & 2,846 & 0.921 & 0.919 & +0.113 & 10/10 & 0.0020 \\
+Strong RF, in-context $\cup$ 400k natural & 400,045 & 0.767 & 0.774 & -0.031 & 2/10 & 0.0645 \\
+XGBoost, in-context $\cup$ 400k natural & 400,045 & 0.709 & 0.707 & -0.099 & 0/10 & 0.0020 \\
+\bottomrule
+\end{tabular}

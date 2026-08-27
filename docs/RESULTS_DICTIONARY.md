@@ -1,59 +1,64 @@
 # Results dictionary
 
-## `results/axis1/metrics.csv`
+## Axis 1
 
-One row per cell, model, seed, and evaluation set.
+### `results/axis1/metrics.csv`
 
-Important columns include:
+One row per dataset cell, model, seed, and evaluation set. Key columns: `cell`, `model`, `seed`, `test_set`, `accuracy`, `macro_f1`, `n_train`, timing fields, and `test_hash`.
 
-- `cell`: dataset-variant identifier.
-- `model`: experiment configuration.
-- `seed`: fitting/model seed.
-- `test_set`: capped or full evaluation record.
-- `accuracy`, `macro_f1`: aggregate metrics.
-- `n_train`: nominal fitting instances.
-- `fit_s`, `predict_s`: measured timings.
-- `test_hash`: recorded partition identity.
+### `results/axis1/per_class.csv`
 
-## `results/axis1/per_class.csv`
+Per-class precision, recall, F1, and weighted support.
 
-Per-class precision, recall, F1, and support. The analysis script uses weighted per-class/confusion records where applicable.
+### `results/axis1/confusion.csv`
 
-## `results/axis1/confusion.csv`
+Persisted confusion entries used to reconstruct operating points and miss/false-alarm cost crossovers.
 
-Persisted confusion-matrix entries used to reconstruct rare-class operating points and miss/false-alarm cost crossovers.
+### `results/axis1/cap_validation.csv`
 
-## `results/axis1/cap_validation.csv`
+Classical full-versus-cap scoring. Final analyses retain only rows whose parent partition hashes match.
 
-Classical full-versus-cap scoring. The final analysis retains only rows whose parent partition hashes match.
+## Grouped-CIC Axis 2
 
-## `results/axis2/results_*.csv`
+### `results/axis2/results_*.csv`
 
-Per-seed aggregate model records, including accuracy, the originally stored macro-F1, parse rate, API cost, latency, and wall time. The manuscript does **not** trust the stored macro-F1 blindly; it re-scores from raw generations.
+Per-seed model records containing accuracy, stored macro-F1, parse rate, API cost, latency, and wall time. Closed-label manuscript scores are independently reconstructed from raw generations.
 
-## `results/axis2/raw_generations_*.jsonl`
+### `results/axis2/raw_generations_*.jsonl`
 
-Raw Axis-2 predictions and metadata. These files are the source of truth for corrected closed-label scoring and per-class results.
+Raw predictions and metadata for the grouped nine-class campaign. These are the source of truth for closed-label scoring and per-class results.
 
-## `results/sensitivity/`
+## Sensitivity records
 
-- `exp1_size_by_balance.csv`: four-arm XGBoost factorial.
+- `exp1_size_by_balance.csv`: CIC-IDS2017 V3 four-arm XGBoost factorial.
 - `exp2_llm_leakage.csv` and `exp2_raw.jsonl`: Kimi-K3 selector audit.
-- `exp3_calibration_probe.csv`, `exp3_chosen_config.json`: blind configuration negotiation.
+- `exp3_calibration_probe.csv` and `exp3_chosen_config.json`: blind grouped-CIC configuration negotiation.
 - `exp4_manyclass.csv`: TabPFN ManyClass sensitivity.
+- `exp5_size_by_balance_unsw.csv`: CIC-UNSW-NB15 V1 factorial.
+- `exp6_axis2_datarich.csv` and `_perclass.csv`: grouped-CIC data-rich references.
 - `stage1_*`: Random Forest selector audit and overlap diagnostics.
 
-## `results/derived/`
+## Final-revision second Axis-2 panel
 
-Regenerated outputs. These files can be deleted and recreated with the analysis script. The directory contains:
+`results/round4/raw/axis2_second_variant/` contains:
 
-- strict-panel means and rank correlations;
-- all 48 paired comparisons;
-- factorial contrasts;
-- cap-validation summaries;
-- per-class operating points;
-- cost crossovers;
-- corrected Axis-2 metrics and tests;
-- manuscript-ready figures and LaTeX fragments;
-- `verification_summary.json`;
-- `release_file_manifest_sha256.csv`.
+- `results.csv`: 70 source run rows (seven models including the anchor × ten seeds), metrics, parse rate, cost, and latency;
+- `raw_generations.jsonl`: 70 raw prediction records, each with 300 labels and predictions;
+- `paired_tests.csv`: supplied paired summaries for the six hosted models;
+- `stage_a_probe.csv`: frozen-registry revalidation, all six configurations passing 5/5;
+- `stage_a_chosen_config.json`: frozen configuration tags;
+- `rerun_audit/`: superseded pre-rerun Qwen3.5 seed-2/seed-3 records, an exact comparison table, and the provenance note for the unchanged-configuration reruns.
+
+`results/round4/derived/` contains the independently reconstructed outputs:
+
+- `axis2_second_variant_per_seed.csv`;
+- `axis2_second_variant_summary.csv`;
+- `axis2_second_variant_paired_tests.csv`;
+- `axis2_second_variant_cost.csv`;
+- `axis2_cross_variant_ordering.csv`;
+- `axis2_second_variant_validation.json`;
+- `round4_summary.json`.
+
+## Generated outputs
+
+`results/derived/` and `results/round4/derived/` can be regenerated from the persisted record. They contain strict-panel summaries, rank correlations, factorial contrasts, cap checks, operating points, cost crossovers, both Axis-2 panels, verification JSON, figures, and LaTeX fragments. `results/round4/generated/table_axis2_two_variants_round4.tex` is the compact current-model table used by the manuscript.

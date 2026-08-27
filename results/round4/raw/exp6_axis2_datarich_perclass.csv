@@ -1,0 +1,361 @@
+seed,reference,learner,class,precision,recall,f1,support
+0,development-rich,strong RF,BENIGN,0.6,0.9,0.72,30
+0,development-rich,strong RF,Bot,0.9375,1.0,0.967741935483871,30
+0,development-rich,strong RF,Brute Force,0.9666666666666667,0.9666666666666667,0.9666666666666667,30
+0,development-rich,strong RF,DDoS,1.0,1.0,1.0,30
+0,development-rich,strong RF,DoS,0.8484848484848485,0.9333333333333333,0.8888888888888888,30
+0,development-rich,strong RF,Heartbleed,1.0,1.0,1.0,6
+0,development-rich,strong RF,Infiltration,1.0,0.3333333333333333,0.5,30
+0,development-rich,strong RF,Port Scan,1.0,0.9666666666666667,0.9830508474576272,30
+0,development-rich,strong RF,Web Attack,0.9354838709677419,0.9666666666666667,0.9508196721311475,30
+0,development-rich,XGBoost,BENIGN,0.6666666666666666,0.9333333333333333,0.7777777777777778,30
+0,development-rich,XGBoost,Bot,0.9375,1.0,0.967741935483871,30
+0,development-rich,XGBoost,Brute Force,0.967741935483871,1.0,0.9836065573770492,30
+0,development-rich,XGBoost,DDoS,0.967741935483871,1.0,0.9836065573770492,30
+0,development-rich,XGBoost,DoS,0.8787878787878788,0.9666666666666667,0.9206349206349206,30
+0,development-rich,XGBoost,Heartbleed,1.0,1.0,1.0,6
+0,development-rich,XGBoost,Infiltration,1.0,0.43333333333333335,0.6046511627906976,30
+0,development-rich,XGBoost,Port Scan,1.0,0.9666666666666667,0.9830508474576272,30
+0,development-rich,XGBoost,Web Attack,1.0,0.9666666666666667,0.9830508474576272,30
+0,large natural,strong RF,BENIGN,0.4,1.0,0.5714285714285714,30
+0,large natural,strong RF,Bot,1.0,0.7333333333333333,0.8461538461538461,30
+0,large natural,strong RF,Brute Force,1.0,0.9666666666666667,0.9830508474576272,30
+0,large natural,strong RF,DDoS,1.0,1.0,1.0,30
+0,large natural,strong RF,DoS,0.9666666666666667,0.9666666666666667,0.9666666666666667,30
+0,large natural,strong RF,Heartbleed,1.0,0.8333333333333334,0.9090909090909091,6
+0,large natural,strong RF,Infiltration,1.0,0.03333333333333333,0.06451612903225806,30
+0,large natural,strong RF,Port Scan,1.0,0.9333333333333333,0.9655172413793104,30
+0,large natural,strong RF,Web Attack,1.0,0.8666666666666667,0.9285714285714286,30
+0,large natural,XGBoost,BENIGN,0.3225806451612903,1.0,0.4878048780487805,30
+0,large natural,XGBoost,Bot,1.0,0.5,0.6666666666666666,30
+0,large natural,XGBoost,Brute Force,1.0,0.9666666666666667,0.9830508474576272,30
+0,large natural,XGBoost,DDoS,1.0,1.0,1.0,30
+0,large natural,XGBoost,DoS,0.9666666666666667,0.9666666666666667,0.9666666666666667,30
+0,large natural,XGBoost,Heartbleed,1.0,0.6666666666666666,0.8,6
+0,large natural,XGBoost,Infiltration,0.0,0.0,0.0,30
+0,large natural,XGBoost,Port Scan,1.0,0.9333333333333333,0.9655172413793104,30
+0,large natural,XGBoost,Web Attack,1.0,0.5666666666666667,0.723404255319149,30
+1,development-rich,strong RF,BENIGN,0.725,0.9666666666666667,0.8285714285714286,30
+1,development-rich,strong RF,Bot,0.967741935483871,1.0,0.9836065573770492,30
+1,development-rich,strong RF,Brute Force,1.0,1.0,1.0,30
+1,development-rich,strong RF,DDoS,0.9666666666666667,0.9666666666666667,0.9666666666666667,30
+1,development-rich,strong RF,DoS,0.9666666666666667,0.9666666666666667,0.9666666666666667,30
+1,development-rich,strong RF,Heartbleed,1.0,1.0,1.0,6
+1,development-rich,strong RF,Infiltration,1.0,0.6333333333333333,0.7755102040816326,30
+1,development-rich,strong RF,Port Scan,0.967741935483871,1.0,0.9836065573770492,30
+1,development-rich,strong RF,Web Attack,1.0,0.9666666666666667,0.9830508474576272,30
+1,development-rich,XGBoost,BENIGN,0.7317073170731707,1.0,0.8450704225352113,30
+1,development-rich,XGBoost,Bot,0.967741935483871,1.0,0.9836065573770492,30
+1,development-rich,XGBoost,Brute Force,1.0,1.0,1.0,30
+1,development-rich,XGBoost,DDoS,1.0,0.9666666666666667,0.9830508474576272,30
+1,development-rich,XGBoost,DoS,0.9333333333333333,0.9333333333333333,0.9333333333333333,30
+1,development-rich,XGBoost,Heartbleed,1.0,1.0,1.0,6
+1,development-rich,XGBoost,Infiltration,1.0,0.5666666666666667,0.723404255319149,30
+1,development-rich,XGBoost,Port Scan,0.967741935483871,1.0,0.9836065573770492,30
+1,development-rich,XGBoost,Web Attack,0.9354838709677419,0.9666666666666667,0.9508196721311475,30
+1,large natural,strong RF,BENIGN,0.36585365853658536,1.0,0.5357142857142857,30
+1,large natural,strong RF,Bot,1.0,0.7333333333333333,0.8461538461538461,30
+1,large natural,strong RF,Brute Force,1.0,1.0,1.0,30
+1,large natural,strong RF,DDoS,1.0,0.9666666666666667,0.9830508474576272,30
+1,large natural,strong RF,DoS,1.0,1.0,1.0,30
+1,large natural,strong RF,Heartbleed,1.0,0.8333333333333334,0.9090909090909091,6
+1,large natural,strong RF,Infiltration,1.0,0.16666666666666666,0.2857142857142857,30
+1,large natural,strong RF,Port Scan,1.0,1.0,1.0,30
+1,large natural,strong RF,Web Attack,1.0,0.43333333333333335,0.6046511627906976,30
+1,large natural,XGBoost,BENIGN,0.3191489361702128,1.0,0.4838709677419355,30
+1,large natural,XGBoost,Bot,1.0,0.6,0.75,30
+1,large natural,XGBoost,Brute Force,1.0,1.0,1.0,30
+1,large natural,XGBoost,DDoS,1.0,0.9666666666666667,0.9830508474576272,30
+1,large natural,XGBoost,DoS,1.0,1.0,1.0,30
+1,large natural,XGBoost,Heartbleed,1.0,0.8333333333333334,0.9090909090909091,6
+1,large natural,XGBoost,Infiltration,1.0,0.13333333333333333,0.23529411764705882,30
+1,large natural,XGBoost,Port Scan,1.0,1.0,1.0,30
+1,large natural,XGBoost,Web Attack,1.0,0.2,0.3333333333333333,30
+2,development-rich,strong RF,BENIGN,0.6818181818181818,1.0,0.8108108108108109,30
+2,development-rich,strong RF,Bot,0.967741935483871,1.0,0.9836065573770492,30
+2,development-rich,strong RF,Brute Force,1.0,1.0,1.0,30
+2,development-rich,strong RF,DDoS,1.0,1.0,1.0,30
+2,development-rich,strong RF,DoS,1.0,1.0,1.0,30
+2,development-rich,strong RF,Heartbleed,1.0,1.0,1.0,6
+2,development-rich,strong RF,Infiltration,1.0,0.5333333333333333,0.6956521739130435,30
+2,development-rich,strong RF,Port Scan,1.0,0.9666666666666667,0.9830508474576272,30
+2,development-rich,strong RF,Web Attack,1.0,1.0,1.0,30
+2,development-rich,XGBoost,BENIGN,0.6818181818181818,1.0,0.8108108108108109,30
+2,development-rich,XGBoost,Bot,0.9666666666666667,0.9666666666666667,0.9666666666666667,30
+2,development-rich,XGBoost,Brute Force,1.0,1.0,1.0,30
+2,development-rich,XGBoost,DDoS,1.0,1.0,1.0,30
+2,development-rich,XGBoost,DoS,1.0,1.0,1.0,30
+2,development-rich,XGBoost,Heartbleed,0.8333333333333334,0.8333333333333334,0.8333333333333334,6
+2,development-rich,XGBoost,Infiltration,1.0,0.5,0.6666666666666666,30
+2,development-rich,XGBoost,Port Scan,1.0,1.0,1.0,30
+2,development-rich,XGBoost,Web Attack,0.967741935483871,1.0,0.9836065573770492,30
+2,large natural,strong RF,BENIGN,0.3448275862068966,1.0,0.5128205128205128,30
+2,large natural,strong RF,Bot,1.0,0.7,0.8235294117647058,30
+2,large natural,strong RF,Brute Force,1.0,0.9666666666666667,0.9830508474576272,30
+2,large natural,strong RF,DDoS,1.0,1.0,1.0,30
+2,large natural,strong RF,DoS,1.0,1.0,1.0,30
+2,large natural,strong RF,Heartbleed,1.0,0.8333333333333334,0.9090909090909091,6
+2,large natural,strong RF,Infiltration,1.0,0.23333333333333334,0.3783783783783784,30
+2,large natural,strong RF,Port Scan,1.0,0.9666666666666667,0.9830508474576272,30
+2,large natural,strong RF,Web Attack,1.0,0.26666666666666666,0.42105263157894735,30
+2,large natural,XGBoost,BENIGN,0.29411764705882354,1.0,0.45454545454545453,30
+2,large natural,XGBoost,Bot,1.0,0.43333333333333335,0.6046511627906976,30
+2,large natural,XGBoost,Brute Force,1.0,0.9666666666666667,0.9830508474576272,30
+2,large natural,XGBoost,DDoS,1.0,1.0,1.0,30
+2,large natural,XGBoost,DoS,1.0,1.0,1.0,30
+2,large natural,XGBoost,Heartbleed,1.0,0.8333333333333334,0.9090909090909091,6
+2,large natural,XGBoost,Infiltration,1.0,0.2,0.3333333333333333,30
+2,large natural,XGBoost,Port Scan,1.0,0.9666666666666667,0.9830508474576272,30
+2,large natural,XGBoost,Web Attack,1.0,0.06666666666666667,0.125,30
+3,development-rich,strong RF,BENIGN,0.5833333333333334,0.9333333333333333,0.717948717948718,30
+3,development-rich,strong RF,Bot,0.9375,1.0,0.967741935483871,30
+3,development-rich,strong RF,Brute Force,0.967741935483871,1.0,0.9836065573770492,30
+3,development-rich,strong RF,DDoS,1.0,1.0,1.0,30
+3,development-rich,strong RF,DoS,0.9666666666666667,0.9666666666666667,0.9666666666666667,30
+3,development-rich,strong RF,Heartbleed,1.0,1.0,1.0,6
+3,development-rich,strong RF,Infiltration,1.0,0.2,0.3333333333333333,30
+3,development-rich,strong RF,Port Scan,1.0,1.0,1.0,30
+3,development-rich,strong RF,Web Attack,0.9090909090909091,1.0,0.9523809523809523,30
+3,development-rich,XGBoost,BENIGN,0.6428571428571429,0.9,0.75,30
+3,development-rich,XGBoost,Bot,0.967741935483871,1.0,0.9836065573770492,30
+3,development-rich,XGBoost,Brute Force,1.0,1.0,1.0,30
+3,development-rich,XGBoost,DDoS,1.0,1.0,1.0,30
+3,development-rich,XGBoost,DoS,1.0,1.0,1.0,30
+3,development-rich,XGBoost,Heartbleed,1.0,0.8333333333333334,0.9090909090909091,6
+3,development-rich,XGBoost,Infiltration,1.0,0.3,0.46153846153846156,30
+3,development-rich,XGBoost,Port Scan,0.967741935483871,1.0,0.9836065573770492,30
+3,development-rich,XGBoost,Web Attack,0.7894736842105263,1.0,0.8823529411764706,30
+3,large natural,strong RF,BENIGN,0.35714285714285715,1.0,0.5263157894736842,30
+3,large natural,strong RF,Bot,1.0,0.6,0.75,30
+3,large natural,strong RF,Brute Force,1.0,1.0,1.0,30
+3,large natural,strong RF,DDoS,1.0,1.0,1.0,30
+3,large natural,strong RF,DoS,1.0,1.0,1.0,30
+3,large natural,strong RF,Heartbleed,1.0,0.8333333333333334,0.9090909090909091,6
+3,large natural,strong RF,Infiltration,0.0,0.0,0.0,30
+3,large natural,strong RF,Port Scan,1.0,0.9666666666666667,0.9830508474576272,30
+3,large natural,strong RF,Web Attack,1.0,0.6666666666666666,0.8,30
+3,large natural,XGBoost,BENIGN,0.30303030303030304,1.0,0.46511627906976744,30
+3,large natural,XGBoost,Bot,1.0,0.43333333333333335,0.6046511627906976,30
+3,large natural,XGBoost,Brute Force,1.0,1.0,1.0,30
+3,large natural,XGBoost,DDoS,1.0,1.0,1.0,30
+3,large natural,XGBoost,DoS,0.967741935483871,1.0,0.9836065573770492,30
+3,large natural,XGBoost,Heartbleed,1.0,0.8333333333333334,0.9090909090909091,6
+3,large natural,XGBoost,Infiltration,1.0,0.06666666666666667,0.125,30
+3,large natural,XGBoost,Port Scan,1.0,0.9333333333333333,0.9655172413793104,30
+3,large natural,XGBoost,Web Attack,1.0,0.26666666666666666,0.42105263157894735,30
+4,development-rich,strong RF,BENIGN,0.75,1.0,0.8571428571428571,30
+4,development-rich,strong RF,Bot,0.9666666666666667,0.9666666666666667,0.9666666666666667,30
+4,development-rich,strong RF,Brute Force,1.0,0.9666666666666667,0.9830508474576272,30
+4,development-rich,strong RF,DDoS,1.0,1.0,1.0,30
+4,development-rich,strong RF,DoS,1.0,0.9333333333333333,0.9655172413793104,30
+4,development-rich,strong RF,Heartbleed,1.0,1.0,1.0,6
+4,development-rich,strong RF,Infiltration,0.9473684210526315,0.6,0.7346938775510204,30
+4,development-rich,strong RF,Port Scan,1.0,0.9333333333333333,0.9655172413793104,30
+4,development-rich,strong RF,Web Attack,0.8333333333333334,1.0,0.9090909090909091,30
+4,development-rich,XGBoost,BENIGN,0.75,1.0,0.8571428571428571,30
+4,development-rich,XGBoost,Bot,0.967741935483871,1.0,0.9836065573770492,30
+4,development-rich,XGBoost,Brute Force,1.0,0.9666666666666667,0.9830508474576272,30
+4,development-rich,XGBoost,DDoS,1.0,1.0,1.0,30
+4,development-rich,XGBoost,DoS,1.0,0.9,0.9473684210526315,30
+4,development-rich,XGBoost,Heartbleed,1.0,1.0,1.0,6
+4,development-rich,XGBoost,Infiltration,0.8823529411764706,0.5,0.6382978723404256,30
+4,development-rich,XGBoost,Port Scan,1.0,0.9333333333333333,0.9655172413793104,30
+4,development-rich,XGBoost,Web Attack,0.7894736842105263,1.0,0.8823529411764706,30
+4,large natural,strong RF,BENIGN,0.3191489361702128,1.0,0.4838709677419355,30
+4,large natural,strong RF,Bot,1.0,0.7333333333333333,0.8461538461538461,30
+4,large natural,strong RF,Brute Force,1.0,0.9666666666666667,0.9830508474576272,30
+4,large natural,strong RF,DDoS,1.0,1.0,1.0,30
+4,large natural,strong RF,DoS,1.0,1.0,1.0,30
+4,large natural,strong RF,Heartbleed,1.0,1.0,1.0,6
+4,large natural,strong RF,Infiltration,1.0,0.06666666666666667,0.125,30
+4,large natural,strong RF,Port Scan,1.0,0.9333333333333333,0.9655172413793104,30
+4,large natural,strong RF,Web Attack,1.0,0.16666666666666666,0.2857142857142857,30
+4,large natural,XGBoost,BENIGN,0.30303030303030304,1.0,0.46511627906976744,30
+4,large natural,XGBoost,Bot,1.0,0.5666666666666667,0.723404255319149,30
+4,large natural,XGBoost,Brute Force,1.0,0.9666666666666667,0.9830508474576272,30
+4,large natural,XGBoost,DDoS,1.0,1.0,1.0,30
+4,large natural,XGBoost,DoS,1.0,1.0,1.0,30
+4,large natural,XGBoost,Heartbleed,1.0,0.6666666666666666,0.8,6
+4,large natural,XGBoost,Infiltration,1.0,0.16666666666666666,0.2857142857142857,30
+4,large natural,XGBoost,Port Scan,1.0,0.9333333333333333,0.9655172413793104,30
+4,large natural,XGBoost,Web Attack,1.0,0.13333333333333333,0.23529411764705882,30
+5,development-rich,strong RF,BENIGN,0.6086956521739131,0.9333333333333333,0.7368421052631579,30
+5,development-rich,strong RF,Bot,0.967741935483871,1.0,0.9836065573770492,30
+5,development-rich,strong RF,Brute Force,1.0,0.9666666666666667,0.9830508474576272,30
+5,development-rich,strong RF,DDoS,1.0,1.0,1.0,30
+5,development-rich,strong RF,DoS,0.8787878787878788,0.9666666666666667,0.9206349206349206,30
+5,development-rich,strong RF,Heartbleed,1.0,1.0,1.0,6
+5,development-rich,strong RF,Infiltration,1.0,0.36666666666666664,0.5365853658536586,30
+5,development-rich,strong RF,Port Scan,0.9666666666666667,0.9666666666666667,0.9666666666666667,30
+5,development-rich,strong RF,Web Attack,1.0,1.0,1.0,30
+5,development-rich,XGBoost,BENIGN,0.6829268292682927,0.9333333333333333,0.7887323943661971,30
+5,development-rich,XGBoost,Bot,0.9375,1.0,0.967741935483871,30
+5,development-rich,XGBoost,Brute Force,1.0,1.0,1.0,30
+5,development-rich,XGBoost,DDoS,1.0,1.0,1.0,30
+5,development-rich,XGBoost,DoS,0.9375,1.0,0.967741935483871,30
+5,development-rich,XGBoost,Heartbleed,1.0,1.0,1.0,6
+5,development-rich,XGBoost,Infiltration,1.0,0.5333333333333333,0.6956521739130435,30
+5,development-rich,XGBoost,Port Scan,1.0,0.9666666666666667,0.9830508474576272,30
+5,development-rich,XGBoost,Web Attack,1.0,1.0,1.0,30
+5,large natural,strong RF,BENIGN,0.3488372093023256,1.0,0.5172413793103449,30
+5,large natural,strong RF,Bot,1.0,0.5333333333333333,0.6956521739130435,30
+5,large natural,strong RF,Brute Force,1.0,1.0,1.0,30
+5,large natural,strong RF,DDoS,1.0,1.0,1.0,30
+5,large natural,strong RF,DoS,0.967741935483871,1.0,0.9836065573770492,30
+5,large natural,strong RF,Heartbleed,1.0,1.0,1.0,6
+5,large natural,strong RF,Infiltration,1.0,0.26666666666666666,0.42105263157894735,30
+5,large natural,strong RF,Port Scan,1.0,0.9,0.9473684210526315,30
+5,large natural,strong RF,Web Attack,1.0,0.4,0.5714285714285714,30
+5,large natural,XGBoost,BENIGN,0.2912621359223301,1.0,0.45112781954887216,30
+5,large natural,XGBoost,Bot,1.0,0.5333333333333333,0.6956521739130435,30
+5,large natural,XGBoost,Brute Force,1.0,1.0,1.0,30
+5,large natural,XGBoost,DDoS,1.0,1.0,1.0,30
+5,large natural,XGBoost,DoS,0.967741935483871,1.0,0.9836065573770492,30
+5,large natural,XGBoost,Heartbleed,1.0,0.8333333333333334,0.9090909090909091,6
+5,large natural,XGBoost,Infiltration,1.0,0.1,0.18181818181818182,30
+5,large natural,XGBoost,Port Scan,1.0,0.9,0.9473684210526315,30
+5,large natural,XGBoost,Web Attack,1.0,0.03333333333333333,0.06451612903225806,30
+6,development-rich,strong RF,BENIGN,0.6521739130434783,1.0,0.7894736842105263,30
+6,development-rich,strong RF,Bot,0.9655172413793104,0.9333333333333333,0.9491525423728814,30
+6,development-rich,strong RF,Brute Force,1.0,1.0,1.0,30
+6,development-rich,strong RF,DDoS,1.0,1.0,1.0,30
+6,development-rich,strong RF,DoS,1.0,0.9333333333333333,0.9655172413793104,30
+6,development-rich,strong RF,Heartbleed,1.0,1.0,1.0,6
+6,development-rich,strong RF,Infiltration,1.0,0.43333333333333335,0.6046511627906976,30
+6,development-rich,strong RF,Port Scan,0.967741935483871,1.0,0.9836065573770492,30
+6,development-rich,strong RF,Web Attack,0.9090909090909091,1.0,0.9523809523809523,30
+6,development-rich,XGBoost,BENIGN,0.6744186046511628,0.9666666666666667,0.7945205479452054,30
+6,development-rich,XGBoost,Bot,0.9032258064516129,0.9333333333333333,0.9180327868852459,30
+6,development-rich,XGBoost,Brute Force,1.0,1.0,1.0,30
+6,development-rich,XGBoost,DDoS,1.0,1.0,1.0,30
+6,development-rich,XGBoost,DoS,1.0,1.0,1.0,30
+6,development-rich,XGBoost,Heartbleed,1.0,1.0,1.0,6
+6,development-rich,XGBoost,Infiltration,1.0,0.5,0.6666666666666666,30
+6,development-rich,XGBoost,Port Scan,1.0,1.0,1.0,30
+6,development-rich,XGBoost,Web Attack,0.967741935483871,1.0,0.9836065573770492,30
+6,large natural,strong RF,BENIGN,0.33707865168539325,1.0,0.5042016806722689,30
+6,large natural,strong RF,Bot,1.0,0.7,0.8235294117647058,30
+6,large natural,strong RF,Brute Force,1.0,1.0,1.0,30
+6,large natural,strong RF,DDoS,1.0,1.0,1.0,30
+6,large natural,strong RF,DoS,0.967741935483871,1.0,0.9836065573770492,30
+6,large natural,strong RF,Heartbleed,1.0,1.0,1.0,6
+6,large natural,strong RF,Infiltration,1.0,0.1,0.18181818181818182,30
+6,large natural,strong RF,Port Scan,1.0,0.9666666666666667,0.9830508474576272,30
+6,large natural,strong RF,Web Attack,1.0,0.23333333333333334,0.3783783783783784,30
+6,large natural,XGBoost,BENIGN,0.2912621359223301,1.0,0.45112781954887216,30
+6,large natural,XGBoost,Bot,1.0,0.5,0.6666666666666666,30
+6,large natural,XGBoost,Brute Force,1.0,1.0,1.0,30
+6,large natural,XGBoost,DDoS,1.0,1.0,1.0,30
+6,large natural,XGBoost,DoS,0.967741935483871,1.0,0.9836065573770492,30
+6,large natural,XGBoost,Heartbleed,1.0,0.6666666666666666,0.8,6
+6,large natural,XGBoost,Infiltration,1.0,0.03333333333333333,0.06451612903225806,30
+6,large natural,XGBoost,Port Scan,1.0,0.9666666666666667,0.9830508474576272,30
+6,large natural,XGBoost,Web Attack,1.0,0.1,0.18181818181818182,30
+7,development-rich,strong RF,BENIGN,0.5957446808510638,0.9333333333333333,0.7272727272727273,30
+7,development-rich,strong RF,Bot,1.0,1.0,1.0,30
+7,development-rich,strong RF,Brute Force,1.0,1.0,1.0,30
+7,development-rich,strong RF,DDoS,1.0,1.0,1.0,30
+7,development-rich,strong RF,DoS,0.90625,0.9666666666666667,0.9354838709677419,30
+7,development-rich,strong RF,Heartbleed,1.0,1.0,1.0,6
+7,development-rich,strong RF,Infiltration,1.0,0.23333333333333334,0.3783783783783784,30
+7,development-rich,strong RF,Port Scan,1.0,1.0,1.0,30
+7,development-rich,strong RF,Web Attack,0.8823529411764706,1.0,0.9375,30
+7,development-rich,XGBoost,BENIGN,0.7777777777777778,0.9333333333333333,0.8484848484848485,30
+7,development-rich,XGBoost,Bot,1.0,1.0,1.0,30
+7,development-rich,XGBoost,Brute Force,1.0,1.0,1.0,30
+7,development-rich,XGBoost,DDoS,1.0,1.0,1.0,30
+7,development-rich,XGBoost,DoS,0.967741935483871,1.0,0.9836065573770492,30
+7,development-rich,XGBoost,Heartbleed,1.0,1.0,1.0,6
+7,development-rich,XGBoost,Infiltration,1.0,0.6666666666666666,0.8,30
+7,development-rich,XGBoost,Port Scan,1.0,1.0,1.0,30
+7,development-rich,XGBoost,Web Attack,0.9090909090909091,1.0,0.9523809523809523,30
+7,large natural,strong RF,BENIGN,0.3157894736842105,1.0,0.48,30
+7,large natural,strong RF,Bot,1.0,0.5666666666666667,0.723404255319149,30
+7,large natural,strong RF,Brute Force,1.0,0.9,0.9473684210526315,30
+7,large natural,strong RF,DDoS,1.0,1.0,1.0,30
+7,large natural,strong RF,DoS,0.967741935483871,1.0,0.9836065573770492,30
+7,large natural,strong RF,Heartbleed,1.0,1.0,1.0,6
+7,large natural,strong RF,Infiltration,1.0,0.13333333333333333,0.23529411764705882,30
+7,large natural,strong RF,Port Scan,1.0,0.8666666666666667,0.9285714285714286,30
+7,large natural,strong RF,Web Attack,0.9,0.3,0.45,30
+7,large natural,XGBoost,BENIGN,0.28846153846153844,1.0,0.44776119402985076,30
+7,large natural,XGBoost,Bot,1.0,0.4666666666666667,0.6363636363636364,30
+7,large natural,XGBoost,Brute Force,1.0,0.9333333333333333,0.9655172413793104,30
+7,large natural,XGBoost,DDoS,1.0,1.0,1.0,30
+7,large natural,XGBoost,DoS,0.967741935483871,1.0,0.9836065573770492,30
+7,large natural,XGBoost,Heartbleed,1.0,0.8333333333333334,0.9090909090909091,6
+7,large natural,XGBoost,Infiltration,1.0,0.06666666666666667,0.125,30
+7,large natural,XGBoost,Port Scan,1.0,0.9,0.9473684210526315,30
+7,large natural,XGBoost,Web Attack,0.8,0.13333333333333333,0.22857142857142856,30
+8,development-rich,strong RF,BENIGN,0.5918367346938775,0.9666666666666667,0.7341772151898734,30
+8,development-rich,strong RF,Bot,0.9666666666666667,0.9666666666666667,0.9666666666666667,30
+8,development-rich,strong RF,Brute Force,1.0,1.0,1.0,30
+8,development-rich,strong RF,DDoS,1.0,1.0,1.0,30
+8,development-rich,strong RF,DoS,1.0,1.0,1.0,30
+8,development-rich,strong RF,Heartbleed,1.0,1.0,1.0,6
+8,development-rich,strong RF,Infiltration,0.9090909090909091,0.3333333333333333,0.4878048780487805,30
+8,development-rich,strong RF,Port Scan,1.0,1.0,1.0,30
+8,development-rich,strong RF,Web Attack,1.0,1.0,1.0,30
+8,development-rich,XGBoost,BENIGN,0.6521739130434783,1.0,0.7894736842105263,30
+8,development-rich,XGBoost,Bot,0.9354838709677419,0.9666666666666667,0.9508196721311475,30
+8,development-rich,XGBoost,Brute Force,1.0,1.0,1.0,30
+8,development-rich,XGBoost,DDoS,0.967741935483871,1.0,0.9836065573770492,30
+8,development-rich,XGBoost,DoS,0.8823529411764706,1.0,0.9375,30
+8,development-rich,XGBoost,Heartbleed,1.0,1.0,1.0,6
+8,development-rich,XGBoost,Infiltration,1.0,0.26666666666666666,0.42105263157894735,30
+8,development-rich,XGBoost,Port Scan,1.0,1.0,1.0,30
+8,development-rich,XGBoost,Web Attack,1.0,1.0,1.0,30
+8,large natural,strong RF,BENIGN,0.375,1.0,0.5454545454545454,30
+8,large natural,strong RF,Bot,1.0,0.7,0.8235294117647058,30
+8,large natural,strong RF,Brute Force,1.0,0.9666666666666667,0.9830508474576272,30
+8,large natural,strong RF,DDoS,1.0,1.0,1.0,30
+8,large natural,strong RF,DoS,1.0,1.0,1.0,30
+8,large natural,strong RF,Heartbleed,1.0,0.8333333333333334,0.9090909090909091,6
+8,large natural,strong RF,Infiltration,1.0,0.1,0.18181818181818182,30
+8,large natural,strong RF,Port Scan,1.0,0.9333333333333333,0.9655172413793104,30
+8,large natural,strong RF,Web Attack,1.0,0.6666666666666666,0.8,30
+8,large natural,XGBoost,BENIGN,0.2777777777777778,1.0,0.43478260869565216,30
+8,large natural,XGBoost,Bot,1.0,0.36666666666666664,0.5365853658536586,30
+8,large natural,XGBoost,Brute Force,1.0,0.9666666666666667,0.9830508474576272,30
+8,large natural,XGBoost,DDoS,1.0,1.0,1.0,30
+8,large natural,XGBoost,DoS,1.0,1.0,1.0,30
+8,large natural,XGBoost,Heartbleed,1.0,0.8333333333333334,0.9090909090909091,6
+8,large natural,XGBoost,Infiltration,0.0,0.0,0.0,30
+8,large natural,XGBoost,Port Scan,1.0,0.9666666666666667,0.9830508474576272,30
+8,large natural,XGBoost,Web Attack,1.0,0.13333333333333333,0.23529411764705882,30
+9,development-rich,strong RF,BENIGN,0.6170212765957447,0.9666666666666667,0.7532467532467533,30
+9,development-rich,strong RF,Bot,0.967741935483871,1.0,0.9836065573770492,30
+9,development-rich,strong RF,Brute Force,1.0,0.9666666666666667,0.9830508474576272,30
+9,development-rich,strong RF,DDoS,1.0,1.0,1.0,30
+9,development-rich,strong RF,DoS,1.0,1.0,1.0,30
+9,development-rich,strong RF,Heartbleed,1.0,1.0,1.0,6
+9,development-rich,strong RF,Infiltration,1.0,0.36666666666666664,0.5365853658536586,30
+9,development-rich,strong RF,Port Scan,1.0,1.0,1.0,30
+9,development-rich,strong RF,Web Attack,0.9375,1.0,0.967741935483871,30
+9,development-rich,XGBoost,BENIGN,0.6363636363636364,0.9333333333333333,0.7567567567567568,30
+9,development-rich,XGBoost,Bot,0.9090909090909091,1.0,0.9523809523809523,30
+9,development-rich,XGBoost,Brute Force,1.0,1.0,1.0,30
+9,development-rich,XGBoost,DDoS,1.0,1.0,1.0,30
+9,development-rich,XGBoost,DoS,0.967741935483871,1.0,0.9836065573770492,30
+9,development-rich,XGBoost,Heartbleed,1.0,1.0,1.0,6
+9,development-rich,XGBoost,Infiltration,1.0,0.36666666666666664,0.5365853658536586,30
+9,development-rich,XGBoost,Port Scan,0.9666666666666667,0.9666666666666667,0.9666666666666667,30
+9,development-rich,XGBoost,Web Attack,0.967741935483871,1.0,0.9836065573770492,30
+9,large natural,strong RF,BENIGN,0.32608695652173914,1.0,0.4918032786885246,30
+9,large natural,strong RF,Bot,1.0,0.5666666666666667,0.723404255319149,30
+9,large natural,strong RF,Brute Force,1.0,0.9666666666666667,0.9830508474576272,30
+9,large natural,strong RF,DDoS,1.0,1.0,1.0,30
+9,large natural,strong RF,DoS,0.9090909090909091,1.0,0.9523809523809523,30
+9,large natural,strong RF,Heartbleed,1.0,0.8333333333333334,0.9090909090909091,6
+9,large natural,strong RF,Infiltration,1.0,0.1,0.18181818181818182,30
+9,large natural,strong RF,Port Scan,1.0,0.9,0.9473684210526315,30
+9,large natural,strong RF,Web Attack,1.0,0.3333333333333333,0.5,30
+9,large natural,XGBoost,BENIGN,0.29411764705882354,1.0,0.45454545454545453,30
+9,large natural,XGBoost,Bot,1.0,0.5,0.6666666666666666,30
+9,large natural,XGBoost,Brute Force,1.0,1.0,1.0,30
+9,large natural,XGBoost,DDoS,1.0,1.0,1.0,30
+9,large natural,XGBoost,DoS,0.9375,1.0,0.967741935483871,30
+9,large natural,XGBoost,Heartbleed,1.0,0.8333333333333334,0.9090909090909091,6
+9,large natural,XGBoost,Infiltration,1.0,0.1,0.18181818181818182,30
+9,large natural,XGBoost,Port Scan,1.0,0.8666666666666667,0.9285714285714286,30
+9,large natural,XGBoost,Web Attack,1.0,0.1,0.18181818181818182,30

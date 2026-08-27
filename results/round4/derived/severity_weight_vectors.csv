@@ -1,0 +1,41 @@
+cell,class,prevalence_pct,rare,uniform,attenuated,declared,amplified
+cic_ids2017_V1,Bot,0.0774406013408026,True,1.0,2.0,3.0,5.0
+cic_ids2017_V1,DDoS,5.075266714152757,False,1.0,1.0,1.0,1.0
+cic_ids2017_V1,DoS GoldenEye,0.4078185934090716,True,1.0,1.0,1.0,1.0
+cic_ids2017_V1,DoS Hulk,6.8527003114799925,False,1.0,1.0,1.0,1.0
+cic_ids2017_V1,DoS Slowhttptest,0.20721307662522037,True,1.0,1.0,1.0,1.0
+cic_ids2017_V1,DoS slowloris,0.21342418287610154,True,1.0,1.0,1.0,1.0
+cic_ids2017_V1,FTP-Patator,0.23522913035261026,True,1.0,1.5,2.0,3.0
+cic_ids2017_V1,Heartbleed,0.0003964535904819246,True,1.0,4.5,8.0,15.0
+cic_ids2017_V1,Infiltration,0.0014536631651003902,True,1.0,4.5,8.0,15.0
+cic_ids2017_V1,PortScan,3.6005915087569256,False,1.0,1.0,1.0,1.0
+cic_ids2017_V1,SSH-Patator,0.12765805613517972,True,1.0,1.5,2.0,3.0
+cic_ids2017_V1,Web Attack  Brute Force,0.058278677800842914,True,1.0,2.5,4.0,7.0
+cic_ids2017_V1,Web Attack  Sql Injection,0.0007929071809638492,True,1.0,2.5,4.0,7.0
+cic_ids2017_V1,Web Attack  XSS,0.025901634578152408,True,1.0,2.5,4.0,7.0
+cic_ids2017_V3,Bot,0.07744060134080218,True,1.0,2.0,3.0,5.0
+cic_ids2017_V3,Brute Force,0.362887186487792,True,1.0,1.5,2.0,3.0
+cic_ids2017_V3,DDoS,5.075266714152728,False,1.0,1.0,1.0,1.0
+cic_ids2017_V3,DoS,7.681156164390887,False,1.0,1.0,1.0,1.0
+cic_ids2017_V3,Heartbleed,0.00039645359048192237,True,1.0,4.5,8.0,15.0
+cic_ids2017_V3,Infiltration,0.001453663165100382,True,1.0,4.5,8.0,15.0
+cic_ids2017_V3,Port Scan,3.6005915087569065,False,1.0,1.0,1.0,1.0
+cic_ids2017_V3,Web Attack,0.0849732195599587,True,1.0,2.5,4.0,7.0
+cic_unsw_V1,Analysis,0.010827880946036036,True,1.0,1.5,2.0,3.0
+cic_unsw_V1,Backdoor,0.012805146162268702,True,1.0,4.5,8.0,15.0
+cic_unsw_V1,DoS,0.12616835189294162,True,1.0,1.0,1.0,1.0
+cic_unsw_V1,Exploits,0.8742336920342871,False,1.0,2.5,4.0,7.0
+cic_unsw_V1,Fuzzers,0.8364773419528957,False,1.0,1.0,1.0,1.0
+cic_unsw_V1,Generic,0.13087612621730513,True,1.0,1.0,1.0,1.0
+cic_unsw_V1,Reconnaissance,0.4726605421661002,True,1.0,1.0,1.0,1.0
+cic_unsw_V1,Shellcode,0.05941211197346729,True,1.0,3.5,6.0,11.0
+cic_unsw_V1,Worms,0.00696750600005797,True,1.0,3.5,6.0,11.0
+cic_unsw_V2,Analysis,0.010827880946036036,True,1.0,1.5,2.0,3.0
+cic_unsw_V2,Backdoor,0.012805146162268702,True,1.0,4.5,8.0,15.0
+cic_unsw_V2,DoS,0.12616835189294162,True,1.0,1.0,1.0,1.0
+cic_unsw_V2,Exploits,0.8742336920342977,False,1.0,2.5,4.0,7.0
+cic_unsw_V2,Fuzzers,0.836477341952895,False,1.0,1.0,1.0,1.0
+cic_unsw_V2,Generic,0.13087612621730513,True,1.0,1.0,1.0,1.0
+cic_unsw_V2,Reconnaissance,0.4726605421660926,True,1.0,1.0,1.0,1.0
+cic_unsw_V2,Shellcode,0.05941211197346729,True,1.0,3.5,6.0,11.0
+cic_unsw_V2,Worms,0.00696750600005797,True,1.0,3.5,6.0,11.0

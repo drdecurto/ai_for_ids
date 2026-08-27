@@ -1,0 +1,8 @@
+{
+  "GLM-5.2": "plain_4096",
+  "DeepSeek-V4-Pro": "plain_512",
+  "Kimi-K3": "plain_4096",
+  "MiniMax-M3": "plain_4096",
+  "Qwen3.5-397B-A17B": "nothink_template",
+  "Nemotron-3-Ultra-550b-a55b": "nothink_template"
+}

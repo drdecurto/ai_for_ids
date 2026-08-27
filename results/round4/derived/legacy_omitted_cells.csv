@@ -1,0 +1,37 @@
+cell,model,accuracy,macro_f1,rare_recall_if_available,evidence
+CIC-IDS2017 V2,"Pruned RF, large",0.9881,0.388,0.192,Five-seed preliminary descriptive record
+CIC-IDS2017 V2,"Pruned RF, balanced",0.9321,0.498,0.732,Five-seed preliminary descriptive record
+CIC-IDS2017 V2,"Strong RF, balanced",0.9652,0.564,0.791,Five-seed preliminary descriptive record
+CIC-IDS2017 V2,"XGBoost, large",0.9981,0.792,0.706,Five-seed preliminary descriptive record
+CIC-IDS2017 V2,TabPFN,0.9531,0.588,,Five-seed preliminary descriptive record
+CIC-IDS2017 V2,TabPFN 2.5,0.9773,0.606,,Five-seed preliminary descriptive record
+CIC-IDS2017 V2,TabICL,0.971,0.625,,Five-seed preliminary descriptive record
+CIC-IDS2017 V2,TabSTAR,0.915,0.488,,Five-seed preliminary descriptive record
+CIC-IDS2017 V4,"Pruned RF, large",0.9903,0.493,0.212,Five-seed preliminary descriptive record
+CIC-IDS2017 V4,"Pruned RF, balanced",0.952,0.542,0.831,Five-seed preliminary descriptive record
+CIC-IDS2017 V4,"Strong RF, balanced",0.9689,0.581,0.857,Five-seed preliminary descriptive record
+CIC-IDS2017 V4,"XGBoost, large",0.9984,0.851,0.705,Five-seed preliminary descriptive record
+CIC-IDS2017 V4,TabPFN,0.959,0.6,,Five-seed preliminary descriptive record
+CIC-IDS2017 V4,TabPFN 2.5,0.9808,0.63,,Five-seed preliminary descriptive record
+CIC-IDS2017 V4,TabICL,0.9721,0.653,,Five-seed preliminary descriptive record
+CIC-IDS2017 V4,TabSTAR,0.9387,0.5573,,Five-seed preliminary descriptive record
+N-BaIoT V1,Random Forest,0.9953,0.9834,,Five-seed preliminary descriptive record
+N-BaIoT V1,TabPFN,0.9568,0.8749,,Five-seed preliminary descriptive record
+N-BaIoT V1,TabPFN 2.5,0.9497,0.8659,,Five-seed preliminary descriptive record
+N-BaIoT V1,TabICL,0.9572,0.8764,,Five-seed preliminary descriptive record
+N-BaIoT V1,TabSTAR,0.9907,0.9872,,Five-seed preliminary descriptive record
+N-BaIoT V2,Random Forest,0.9212,0.919,,Five-seed preliminary descriptive record
+N-BaIoT V2,TabPFN,0.9537,0.8706,,Five-seed preliminary descriptive record
+N-BaIoT V2,TabPFN 2.5,0.9575,0.8883,,Five-seed preliminary descriptive record
+N-BaIoT V2,TabICL,0.9545,0.873,,Five-seed preliminary descriptive record
+N-BaIoT V2,TabSTAR,0.9633,0.9641,,Five-seed preliminary descriptive record
+N-BaIoT V3,Random Forest,0.9998,0.9997,,Five-seed preliminary descriptive record
+N-BaIoT V3,TabPFN,0.9997,0.9995,,Five-seed preliminary descriptive record
+N-BaIoT V3,TabPFN 2.5,0.9997,0.9994,,Five-seed preliminary descriptive record
+N-BaIoT V3,TabICL,0.9996,0.9993,,Five-seed preliminary descriptive record
+N-BaIoT V3,TabSTAR,0.9991,0.9985,,Five-seed preliminary descriptive record
+N-BaIoT V4,Random Forest,0.9947,0.9918,,Five-seed preliminary descriptive record
+N-BaIoT V4,TabPFN,0.9992,0.9987,,Five-seed preliminary descriptive record
+N-BaIoT V4,TabPFN 2.5,0.9993,0.9988,,Five-seed preliminary descriptive record
+N-BaIoT V4,TabICL,0.9989,0.9982,,Five-seed preliminary descriptive record
+N-BaIoT V4,TabSTAR,0.9979,0.9966,,Five-seed preliminary descriptive record

@@ -1,63 +1,32 @@
 # Tabular Foundation Models and Few-Shot LLMs for IoT Intrusion Detection
 
-The release preserves the original two-axis benchmark architecture and is organised around the final audited evidential record. The canonical entry point is:
+This release contains the complete persisted record and deterministic analysis code used by the final revision. The evidence is organised as in the self-contained manuscript:
 
-```bash
-make all
-```
+1. **Preliminary screening:** five-seed results across ten Axis-1 cells and complementary few-shot protocol sweeps establish heterogeneity and boundary conditions.
+2. **Confirmatory record:** four benign-dominated Axis-1 cells have complete paired ten-seed records. Axis 2 contains two complete source-specific, six-model, ten-seed campaigns: grouped CIC-IDS2017 and CIC-UNSW-NB15 V1.
+3. **Targeted robustness evidence:** threshold sensitivity, two size-by-balance factorials, evaluation-cap checks, ten-seed ManyClass sensitivity, per-class operating points, cost vectors, and grouped-CIC data-rich tree references constrain the claims.
 
-This command rebuilds every manuscript table and figure from persisted CSV/JSON outputs, recomputes the corrected closed-label Axis-2 metrics, runs an independent manuscript-claim verifier, performs a second table-by-table statistical audit, and executes the release tests.
+The second Axis-2 campaign is complete. Its calibration probes, run ledger, raw generations, paired tests, and cost record are released under `results/round4/raw/axis2_second_variant/`; no partial calls are used.
 
-## Evidence supported by the release
+## Concise manuscript presentation
 
-- The strict Axis-1 core contains **eight configurations**, four dataset-variant cells, and ten paired seeds.
-- Accuracy and mean recall on the predeclared rare classes are negatively rank-correlated on all four cells.
-- In every cell, the three highest-accuracy configurations are also the three lowest-rare-recall configurations.
-- A $2\times2$ size-by-balance experiment identifies class distribution as the principal measured lever on CIC-IDS2017 V3.
-- TabPFN 2.5 and TabICL are compared with six classical configurations in 48 paired comparisons: 40 favour a prior-fitted model on all ten seeds, four favour a classical model on all ten seeds, and four are mixed.
-- TabSTAR is a separate descriptive extension because its CIC campaign uses a different held-out partition and a larger fitted budget.
-- The Axis-2 panel contains six language models plus a matched Random Forest anchor. Kimi-K3 has the strongest point estimates, but no multiplicity-adjusted advantage over the anchor is established.
+The anonymous manuscript presents the complete evidence in 28 pages. Cap validation is consolidated into one two-panel table, the preliminary Axis-2 sweeps into one compact table, and the two current-model Axis-2 campaigns into one cross-source table. Granular CSVs and generated tables remain available so that concision does not reduce auditability. The exact current manuscript fragments are mirrored in `results/manuscript_tables/` and `results/derived/`. See `docs/MANUSCRIPT_TABLE_MAP_ROUND4_CONCISE.md`.
 
-## Repository layout
+## Principal evidence
 
-```text
-.
-├── README.md
-├── Makefile
-├── requirements.txt
-├── requirements-experiments.txt
-├── data/
-│   └── README.md
-├── docs/
-│   ├── DATA_PROVENANCE.md
-│   ├── EXPERIMENT_PROTOCOL.md
-│   ├── KNOWN_LIMITATIONS.md
-│   ├── NOTEBOOKS.md
-│   ├── NUMERICAL_VERIFICATION.md
-│   ├── NUMERICAL_SOURCE_MAP.md
-│   ├── TABLE_AND_STATISTICAL_AUDIT.md
-│   ├── REPRODUCTION_SMOKE_TEST.md
-│   ├── RESULTS_DICTIONARY.md
-│   └── SECURITY_AND_ANONYMITY.md
-├── notebooks/
-│   ├── 00_reproduce_manuscript_analysis.ipynb
-│   └── experiments/
-├── results/
-│   ├── axis1/
-│   ├── axis2/
-│   ├── sensitivity/
-│   └── derived/
-├── scripts/
-│   ├── recompute_manuscript_results.py
-│   ├── verify_manuscript_claims.py
-│   └── audit_manuscript_tables.py
-└── tests/
-    └── test_release.py
-```
+- The strict Axis-1 record contains **320 seed-level observations**: four cells, eight model-budget configurations, and ten paired seeds.
+- Accuracy and mean rare-class recall remain negatively rank-correlated at prevalence thresholds of 0.1%, 0.25%, 0.5%, and 1% in all 16 cell-threshold combinations.
+- The same three accuracy leaders are the three rare-recall laggards in every cell-threshold combination.
+- Two ten-seed $2\times2$ XGBoost experiments separate row budget from class distribution on CIC-IDS2017 V3 and CIC-UNSW-NB15 V1.
+- The ManyClass sensitivity record contains four settings and ten seeds each.
+- Axis 2 evaluates six hosted models and matched Random Forest anchors on grouped CIC-IDS2017 (45 fitting rows, 246 evaluation rows per seed) and CIC-UNSW-NB15 V1 (50 fitting rows, 300 evaluation rows per seed).
+- Kimi-K3 leads both current-model panels, followed by GLM-5.2, but no positive model-anchor contrast survives six-comparison correction. Hosted-model ranks are identical across sources (Spearman $\rho_s=1.000$), while absolute performance is lower on CIC-UNSW-NB15.
+- Hosted-model parse rates span 0.973--1.000 on grouped CIC-IDS2017 and 0.958--1.000 on CIC-UNSW-NB15 V1; unparsed responses remain in the denominator and are scored as errors.
+- The two hosted campaigns cost USD 218.3418699 and USD 293.68404155 (USD 512.02591145 combined).
+- Grouped-CIC development-rich Random Forest and XGBoost references distinguish controlled few-shot competitiveness from a practical labelled-data comparison.
+- Macro-$F_1$, per-class precision/support, alerts per true positive, cap/full checks, and severity-weighted cost crossovers constrain interpretation of rare-class recall.
 
-## Quick reproduction
-
-### Local Python
+## Reproduce the analysis
 
 ```bash
 python -m venv .venv
@@ -66,52 +35,61 @@ pip install -r requirements.txt
 make all
 ```
 
-Expected final checks:
+The final-revision layer alone can be regenerated with:
 
-```text
-claim verifier: PASS
-statistical table audit: PASS (15 standalone checks; 16 with manuscript source)
-7 passed
+```bash
+make round4
 ```
 
-### Google Colab
+No benchmark download, GPU, API key, or hosted-model call is required for analysis reproduction. Completed seed-level outputs and raw Axis-2 generations are included.
 
-Upload or clone the repository, open:
+## Repository layout
 
 ```text
-notebooks/00_reproduce_manuscript_analysis.ipynb
+.
+├── README.md
+├── Makefile
+├── data/
+├── docs/
+├── notebooks/
+│   ├── 00_reproduce_manuscript_analysis.ipynb
+│   ├── 01_reproduce_round4_revision.ipynb
+│   └── experiments/
+│       ├── revision4_experiments.ipynb
+│       └── revision4_experiments_completed.ipynb
+├── results/
+│   ├── axis1/
+│   ├── axis2/
+│   ├── sensitivity/
+│   ├── derived/
+│   ├── round4/
+│   │   ├── raw/axis2_second_variant/
+│   │   ├── derived/
+│   │   └── generated/
+│   └── development_screening/
+├── scripts/
+│   ├── recompute_manuscript_results.py
+│   ├── recompute_round4_revision.py
+│   ├── recompute_axis2_second_variant.py
+│   ├── verify_manuscript_claims.py
+│   └── audit_manuscript_tables.py
+└── tests/
 ```
-
-and run all cells. The analysis-only path needs no API key, GPU, or benchmark download.
 
 ## Reproducibility levels
 
-1. **Exact manuscript analysis.** Fully reproducible from the included result files.
-2. **Metric re-scoring.** Axis-2 raw generations are included, so closed-label macro-$F_1$, parse rate, per-class scores, paired effects, and cost totals can be recomputed independently.
-3. **Model re-execution.** Sanitised source notebooks are retained under `notebooks/experiments/`. Re-execution requires the benchmark data, compatible GPUs/model packages, and/or hosted endpoints. Endpoint versions and availability may change; the persisted outputs are the record used by the paper.
-
-## Main generated artifacts
-
-After `make all`, inspect:
-
-- `results/derived/verification_summary.json`
-- `results/derived/manuscript_claim_verification.json`
-- `results/derived/table_statistical_audit.json`
-- `results/derived/axis1_core_summary.csv`
-- `results/derived/axis1_fm_vs_classical.csv`
-- `results/derived/size_balance_contrasts.csv`
-- `results/derived/operating_points_per_class.csv`
-- `results/derived/cost_crossovers_summary.csv`
-- `results/derived/axis2_closed_label_summary.csv`
-- `results/derived/axis2_paired_tests.csv`
-- `results/derived/release_file_manifest_sha256.csv`
+1. **Exact numerical analysis:** fully reproducible from the included CSV/JSON record.
+2. **Axis-2 rescoring:** raw generations from both current-model campaigns are included, allowing closed-label metrics, parse rates, model-anchor paired tests, and costs to be recomputed. All scheduled Qwen3.5 seeds in the CIC-UNSW-NB15 panel are complete; the preserved rerun audit documents the two initially interrupted jobs and their unchanged-configuration completion.
+3. **Model re-execution:** source notebooks are retained but require the original benchmark sources, compatible package versions, GPUs and/or hosted endpoints. Provider versions and prices can change; the persisted outputs are the article's canonical record. Credentials are read only from environment variables or notebook secret stores and are not embedded in the release.
 
 ## Interpretation guardrails
 
-- “Large” means at most 400,000 naturally distributed fitting rows, not the complete training partition.
+- “Large natural” means at most 400,000 naturally distributed fitting rows, not the entire training partition.
 - “Matched balanced” means approximately 2,000 fitting rows per class, bounded by availability.
-- Rare classes are non-benign labels below 0.5% of the weighted evaluation distribution.
-- Recall is interpreted together with precision, alerts per true positive, stability, and cost crossovers.
-- TabSTAR is not inserted into the strict paired rank analysis.
-- Parse failures remain errors for their true classes but are not treated as an additional macro-averaged label.
-- Failure to establish a multiplicity-adjusted advantage is not interpreted as equivalence.
+- Rare-class recall is a class-unweighted mean over non-benign labels below the declared prevalence threshold.
+- The fixed test split gives extremely small classes coarse recall resolution; seed intervals describe fitting/model variation, not resampling of the deployment population.
+- The evaluation cap is reliable for the central recall comparison but is not treated as an exact substitute for full scoring on precision, alert burden, or cost.
+- TabSTAR and preliminary cells are not inserted into the strict paired rank analysis.
+- Failure to establish multiplicity-adjusted superiority is not interpreted as equivalence.
+- The two Axis-2 panels are source-specific few-shot evaluations, not a cross-dataset-transfer experiment.
+- Data-rich tree references are available on grouped CIC-IDS2017 only and answer a different information-budget question from the matched five-shot anchors.

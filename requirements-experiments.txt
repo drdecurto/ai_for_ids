@@ -10,3 +10,15 @@ tabpfn>=2.0
 # experiment notebooks because stable package names/versions were not available
 # across every run environment. Consult notebooks/experiments/ and pin the exact
 # commit used in any independent re-execution.
+
+# Optional exact environment for the archived final-revision ManyClass rerun.
+# Install this subset in a separate environment because older notebooks may
+# have different package constraints.
+tabpfn==6.0.6
+tabpfn-extensions==0.2.1
+tabpfn-common-utils==0.2.10
+transformers==4.57.1
+tokenizers==0.22.1
+safetensors==0.7.0
+accelerate==1.11.0
+peft==0.18.0

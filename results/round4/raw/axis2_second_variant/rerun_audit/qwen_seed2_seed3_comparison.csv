@@ -1,0 +1,5 @@
+record,seed,model,config,accuracy,macro_f1,parse_rate,errors,usd,latency_median_s,wall_min,n_eval
+pre_rerun,2,Qwen3.5-397B-A17B,nothink_template,0.0,0.0,0.0,300,0.0,,0.3889187296231587,300
+pre_rerun,3,Qwen3.5-397B-A17B,nothink_template,0.0,0.0,0.0,300,0.0,,0.4675596634546916,300
+completed_rerun,2,Qwen3.5-397B-A17B,nothink_template,0.43,0.396320105122099,1.0,0,1.6251875999999998,0.8587929010391235,4.429377285639445,300
+completed_rerun,3,Qwen3.5-397B-A17B,nothink_template,0.4266666666666667,0.4082204784124174,1.0,0,1.6732626000000002,0.8535264730453491,4.403283015886943,300

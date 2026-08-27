@@ -1,0 +1,109 @@
+{
+  "generated_utc": "2026-08-26T23:55:06.361035+00:00",
+  "experiments": {
+    "manyclass_ten_seed": {
+      "included": true,
+      "complete": true,
+      "rows": 40
+    },
+    "unsw_size_by_balance": {
+      "included": true,
+      "complete": true,
+      "rows": 40
+    },
+    "axis2_datarich_references": {
+      "included": true,
+      "complete": true,
+      "rows": 40,
+      "per_class_rows": 360
+    },
+    "second_current_model_hosted_dataset": {
+      "included": true,
+      "complete": true,
+      "dataset": "CIC-UNSW-NB15 V1",
+      "hosted_models": 6,
+      "matched_random_forest": true,
+      "seeds": 10,
+      "evaluation_rows_per_seed": 300,
+      "run_records": 70,
+      "raw_generation_records": 70,
+      "qwen_completed_seeds": 10,
+      "qwen_parse_rate": 1.0,
+      "qwen_unparsed_outputs": 0,
+      "hosted_model_cost_usd": 293.68404155,
+      "rerun_audit_directory": "axis2_second_variant/rerun_audit"
+    }
+  },
+  "files": [
+    {
+      "path": "axis2_second_variant/paired_tests.csv",
+      "bytes": 932,
+      "sha256": "b8f979585a8df031fd521dfe72625e343346d112e9ba09b2c82c00608540d611"
+    },
+    {
+      "path": "axis2_second_variant/raw_generations.jsonl",
+      "bytes": 1338610,
+      "sha256": "0dcd14060e219f11f60087a4cde1ab442b55c171e9794dd9188d6978f583a999"
+    },
+    {
+      "path": "axis2_second_variant/rerun_audit/README.md",
+      "bytes": 748,
+      "sha256": "c9b74f3f5ba087fa8ae98077b0565d6e31b3f9447cf4b5a4163fe1d2d99cd5fe"
+    },
+    {
+      "path": "axis2_second_variant/rerun_audit/pre_rerun_raw_generations.jsonl",
+      "bytes": 1395292,
+      "sha256": "1714c507a8338d61f60871d368c9927e9f598dd6986c3d4306adf8ba3b044155"
+    },
+    {
+      "path": "axis2_second_variant/rerun_audit/pre_rerun_results.csv",
+      "bytes": 8534,
+      "sha256": "2233ee0d921561f5f45fe961dbcbc197e7feb441c6dab89678528993d6a48558"
+    },
+    {
+      "path": "axis2_second_variant/rerun_audit/qwen_seed2_seed3_comparison.csv",
+      "bytes": 579,
+      "sha256": "e8515dc4c7e8fbbef5489d07b1c9ff97db452226424a9e8ab4c829315d697314"
+    },
+    {
+      "path": "axis2_second_variant/results.csv",
+      "bytes": 8504,
+      "sha256": "15481cb224ed1fe83c5bc32a3ccb8b54f7ed9ad626b7aa3a70f8ab24e0d9eadd"
+    },
+    {
+      "path": "axis2_second_variant/stage_a_chosen_config.json",
+      "bytes": 215,
+      "sha256": "d4b8d7776623042c769028f1541cb375be3f8293f1899ea272eb21a35c8f9c48"
+    },
+    {
+      "path": "axis2_second_variant/stage_a_probe.csv",
+      "bytes": 385,
+      "sha256": "d02b16d28310a35c665f73a9626e8b144cefa4c63ba703c45dc6da6b893f8b53"
+    },
+    {
+      "path": "exp4_manyclass.csv",
+      "bytes": 3738,
+      "sha256": "6bfa737fe01dcc94a4d0952f1a09240a96dd86099e2e09889fd3a47c75de72c1"
+    },
+    {
+      "path": "exp5_contrasts.csv",
+      "bytes": 489,
+      "sha256": "efd2c7d420e7d88a8f3c4149a67174c5361ccc363596ffcb27e45e906b1f6a5e"
+    },
+    {
+      "path": "exp5_size_by_balance_unsw.csv",
+      "bytes": 5450,
+      "sha256": "2dd51be91a64b2ea442703a148438fad224f32f477e891f7cfd218db2ab30cac"
+    },
+    {
+      "path": "exp6_axis2_datarich.csv",
+      "bytes": 4820,
+      "sha256": "21c18642364ee731938253b88b112877c990b7ef59eb0c4b68af6debae45d153"
+    },
+    {
+      "path": "exp6_axis2_datarich_perclass.csv",
+      "bytes": 25091,
+      "sha256": "fa396e177aa0b8218a724ebb06fd5b1b6af420ad07966e3ad6ad39ddd3f9265c"
+    }
+  ]
+}

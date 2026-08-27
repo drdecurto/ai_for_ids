@@ -1,30 +1,20 @@
 # Notebook guide
 
-## Canonical notebook
+## Analysis-only notebooks
 
-`00_reproduce_manuscript_analysis.ipynb`
+- `notebooks/00_reproduce_manuscript_analysis.ipynb` rebuilds the original audited analysis layer from persisted records.
+- `notebooks/01_reproduce_round4_revision.ipynb` rebuilds all final-revision derived CSVs and generated LaTeX tables, including the completed second Axis-2 panel. It requires no API calls or benchmark downloads.
 
-- clean, restart-and-run;
-- Google Colab compatible;
-- installs analysis dependencies;
-- requires no credentials;
-- regenerates all derived tables and figures;
-- runs release tests;
-- ships without execution outputs or environment-specific paths; run all cells to regenerate them.
+## Experimental notebooks
 
-## Experiment-source notebooks
+- `notebooks/experiments/axis1_ten_seed_campaign.ipynb`: strict Axis-1 campaign.
+- `notebooks/experiments/axis2_six_model_campaign.ipynb`: grouped-CIC current-model Axis-2 campaign.
+- `notebooks/experiments/axis2_feature_selection_audit.ipynb`: Kimi-K3 selector audit.
+- `notebooks/experiments/axis2_nemotron_configuration_rerun.ipynb`: corrected Nemotron configuration.
+- `notebooks/experiments/sensitivity_experiments.ipynb`: earlier sensitivity experiments.
+- `notebooks/experiments/revision4_experiments.ipynb`: complete Round-4 execution notebook, including the CIC-UNSW factorial, ten-seed ManyClass study, data-rich tree references, and the second current-model Axis-2 variant.
+- `notebooks/experiments/revision4_experiments_completed.ipynb`: identical sanitized archival copy of the completed Round-4 notebook.
+- `notebooks/experiments/revision4_experiments_completed_rerun.ipynb`: explicit archival alias for the final notebook after completion of the two initially interrupted Qwen3.5 jobs.
+- `notebooks/experiments/round4_completed_extensions.ipynb`: compact record of the first three Round-4 add-on experiments; retained for continuity.
 
-The notebooks under `notebooks/experiments/` are sanitised code records from the completed campaigns. Outputs, execution counters, credentials, and named repository URLs have been removed. They are retained to document model calls, loaders, fitting loops, and recovery logic.
-
-They are **not** the canonical path for verifying manuscript numerics. Some were developed incrementally and contain recovery or continuation cells. Use the persisted results plus the canonical analysis notebook for exact reproduction. Independent model re-execution should consolidate the relevant cells, pin model/package versions, and record new raw-data hashes.
-
-## Released experiment notebooks
-
-- `axis1_ten_seed_campaign.ipynb`: strict Axis-1 and cap-validation campaign.
-- `axis2_six_model_campaign.ipynb`: six-model Axis-2 campaign.
-- `axis2_nemotron_configuration_rerun.ipynb`: calibrated Nemotron rerun.
-- `axis2_feature_selection_audit.ipynb`: pooled/development/ICL selector audit.
-- `sensitivity_experiments.ipynb`: size-by-balance and ManyClass sensitivity code.
-
-Internal editorial-analysis notebooks and reviewer-specific decision cells are not part of
-the public release because they are not required to reproduce any reported result.
+All released notebooks have outputs and execution counts cleared. API credentials are read from Colab Secrets or environment variables and are never stored in the notebook. Model re-execution is optional and environment-dependent; persisted CSV/JSON records are canonical for the manuscript.

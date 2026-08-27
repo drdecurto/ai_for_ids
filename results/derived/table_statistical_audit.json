@@ -39,7 +39,7 @@
     {
       "name": "Table 10 ManyClass sensitivity",
       "status": "PASS",
-      "details": "All 12 runs and the 0.00610 rare-recall range verified"
+      "details": "All 40 runs and the 0.00303 rare-recall range verified"
     },
     {
       "name": "Table 11 stability and efficiency",
@@ -62,9 +62,14 @@
       "details": "560 seed-level cost comparisons and all selected medians independently reconstructed"
     },
     {
-      "name": "Table 15 Axis-2 panel",
+      "name": "Table 23 grouped-CIC Axis-2 panel",
       "status": "PASS",
       "details": "All 60 raw LLM seed records rescored over the closed nine-label set; six adjusted paired tests verified"
+    },
+    {
+      "name": "Table 23 second Axis-2 source",
+      "status": "PASS",
+      "details": "70 raw records independently rescored; all scheduled model-seed jobs complete, 300 rows per seed, six paired tests and costs verified"
     },
     {
       "name": "Table 6 Axis-2 calibration",
@@ -96,7 +101,10 @@
       "size at natural": 0.24213834585430946,
       "size at balanced": -0.007064374239907023
     },
-    "axis2_total_cost_usd": 218.3418699,
+    "axis2_grouped_cic_cost_usd": 218.3418699,
+    "axis2_cic_unsw_cost_usd": 293.68404154999996,
+    "axis2_combined_cost_usd": 512.02591145,
+    "axis2_cross_variant_spearman": 1.0,
     "cic_ids2017_heldout_benign_share": 0.831158344885558
   }
 }

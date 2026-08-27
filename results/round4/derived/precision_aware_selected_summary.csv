@@ -1,0 +1,8 @@
+cell,model,recovered,high_recall_low_precision,high_precision_low_recall,missed,alerts_per_tp
+cic_ids2017_V1,xgb_full,7,0,2,2,1.0345289856443525
+cic_ids2017_V1,tabpfn_2.5,6,4,0,1,1.64691908581332
+cic_ids2017_V1,rf_pruned_full,5,0,1,5,1.008907793299123
+cic_ids2017_V1,tabstar,6,3,0,2,2.71062913738442
+cic_unsw_V2,xgb_full,2,0,2,3,1.4211826507336363
+cic_unsw_V2,tabpfn_2.5,1,4,0,2,3.0661889001458205
+cic_unsw_V2,rf_pruned_full,1,0,3,3,1.2001926787864325

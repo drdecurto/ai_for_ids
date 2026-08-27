@@ -1,0 +1,10 @@
+\begin{tabular}{@{}llrrrrrr@{}}
+\toprule
+Fitting reference & Learner & Rows & Unique & Accuracy & Macro-$F_1$ & $\Delta$ vs 45-row RF & $\Delta$ vs Kimi \\
+\midrule
+development-rich & XGBoost & 2,846 & 2,846 & 0.921 & 0.919 & +0.113 & +0.085 \\
+development-rich & strong RF & 2,846 & 2,846 & 0.912 & 0.911 & +0.106 & +0.078 \\
+large natural & XGBoost & 400,045 & 400,045 & 0.709 & 0.707 & -0.099 & -0.127 \\
+large natural & strong RF & 400,045 & 400,045 & 0.767 & 0.774 & -0.031 & -0.059 \\
+\bottomrule
+\end{tabular}

@@ -7,6 +7,9 @@
     "classical all 10": 4,
     "mixed": 4
   },
-  "axis2_llm_cost_usd": 218.3418699,
+  "axis2_grouped_cic_llm_cost_usd": 218.3418699,
+  "axis2_cic_unsw_llm_cost_usd": 293.68404154999996,
+  "axis2_combined_llm_cost_usd": 512.02591145,
+  "axis2_cross_variant_spearman": 1.0,
   "raw_source_checksums_available": false
 }

@@ -1,0 +1,7 @@
+model,config,parsed,clean,of,finish_reason,preview,error,frozen
+GLM-5.2,plain_4096,5,5,5,stop,Analysis,,True
+DeepSeek-V4-Pro,plain_512,5,5,5,stop,Analysis,,True
+Kimi-K3,plain_4096,5,5,5,stop,Analysis,,True
+MiniMax-M3,plain_4096,5,5,5,stop,Analysis,,True
+Qwen3.5-397B-A17B,nothink_template,5,5,5,stop,Analysis,,True
+Nemotron-3-Ultra-550b-a55b,nothink_template,5,5,5,stop,Analysis,,True

@@ -15,6 +15,7 @@ import pandas as pd
 
 ROOT = Path(__file__).resolve().parents[1]
 DER = ROOT / "results" / "derived"
+R4DER = ROOT / "results" / "round4" / "derived"
 AX1 = ROOT / "results" / "axis1"
 
 
@@ -43,6 +44,8 @@ def main() -> None:
     tabstar = pd.read_csv(DER / "tabstar_named_vs_generic.csv")
     many = pd.read_csv(DER / "manyclass_summary.csv")
     axis2 = pd.read_csv(DER / "axis2_closed_label_summary.csv")
+    axis2_unsw = pd.read_csv(R4DER / "axis2_second_variant_summary.csv")
+    axis2_cross = pd.read_csv(R4DER / "axis2_cross_variant_ordering.csv")
     mi = pd.read_csv(DER / "axis2_mi_llm_effects.csv")
     cap = pd.read_csv(DER / "cap_validation_matching_hash_summary.csv")
     provenance = pd.read_csv(AX1 / "provenance.csv")
@@ -135,7 +138,33 @@ def main() -> None:
     assert int(kimi.wins) == 9
     close(float(glm.mean_delta), 0.0132245451645882)
     close(float(glm.p_bonferroni_6), 0.12890625)
-    close(float(axis2.loc[axis2.model != "RandomForest", "usd"].sum()), 218.3418699)
+    main_axis2_cost = float(axis2.loc[axis2.model != "RandomForest", "usd"].sum())
+    close(main_axis2_cost, 218.3418699)
+
+    unsw_rf = row(axis2_unsw, model="RandomForest")
+    unsw_kimi = row(axis2_unsw, model="Kimi-K3")
+    unsw_glm = row(axis2_unsw, model="GLM-5.2")
+    unsw_qwen = row(axis2_unsw, model="Qwen3.5-397B-A17B")
+    close(float(unsw_rf.macro_f1_closed), 0.4332027742226584)
+    close(float(unsw_kimi.macro_f1_closed), 0.47318489242454714)
+    close(float(unsw_kimi.mean_delta), 0.03998211820188868)
+    close(float(unsw_kimi.p_bonferroni_6), 0.10546875)
+    assert int(unsw_kimi.wins) == 9
+    close(float(unsw_glm.mean_delta), 0.03282746585398405)
+    close(float(unsw_glm.p_bonferroni_6), 0.234375)
+    assert int(unsw_glm.wins) == 8
+    close(float(unsw_qwen.accuracy), 0.419)
+    close(float(unsw_qwen.macro_f1_closed), 0.39579892193686994)
+    close(float(unsw_qwen.mean_delta), -0.03740385228578844)
+    close(float(unsw_qwen.p_bonferroni_6), 0.22265625)
+    assert int(unsw_qwen.wins) == 2
+    close(float(unsw_qwen.parse_rate), 1.0)
+    assert int(unsw_qwen.unparsed) == 0
+    second_axis2_cost = float(axis2_unsw.loc[axis2_unsw.model != "RandomForest", "usd"].sum())
+    close(second_axis2_cost, 293.68404155)
+    close(float(axis2_cross.loc[0, "spearman_rank_correlation"]), 1.0)
+    combined_axis2_cost = main_axis2_cost + second_axis2_cost
+    close(combined_axis2_cost, 512.02591145)
 
     r = row(mi, metric="macro_f1", regime="development_only")
     close(float(r.mean_delta), 0.011865, atol=5e-7)
@@ -157,7 +186,10 @@ def main() -> None:
         "strict_axis1_records": 320,
         "strict_axis1_summary_rows": 32,
         "pairwise_direction_counts": counts,
-        "axis2_llm_cost_usd": float(axis2.loc[axis2.model != "RandomForest", "usd"].sum()),
+        "axis2_grouped_cic_llm_cost_usd": main_axis2_cost,
+        "axis2_cic_unsw_llm_cost_usd": second_axis2_cost,
+        "axis2_combined_llm_cost_usd": combined_axis2_cost,
+        "axis2_cross_variant_spearman": float(axis2_cross.loc[0, "spearman_rank_correlation"]),
         "raw_source_checksums_available": False,
     }
     out = DER / "manuscript_claim_verification.json"
