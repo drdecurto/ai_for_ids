@@ -1,0 +1,26 @@
+\begin{tabular}{@{}llccccc@{}}
+\toprule
+Objective & Recommended & Accuracy & $R_{\mathrm{rare}}$ & Macro-$F_1$ & FA / missed rare per $10^5$ & $\rho^*$ vs RF-P/L \\
+\midrule
+\multicolumn{7}{@{}l}{\emph{CIC-IDS2017 $V_1$}} \\
+Highest accuracy & XGB/L & 0.9987 & 0.711 & 0.802 & 58 / 55 & 0.04 \\
+Fewest false alarms & RF-P/L & 0.9948 & 0.441 & 0.604 & 48 / 293 & -- \\
+Highest rare-class coverage & XGB/B & 0.9938 & 0.926 & 0.818 & 561 / 30 & 1.13 \\
+Balanced aggregate (macro-$F_1$) & XGB/B & 0.9938 & 0.926 & 0.818 & 561 / 30 & 1.13 \\
+\multicolumn{7}{@{}l}{\emph{CIC-IDS2017 $V_3$}} \\
+Highest accuracy & XGB/L & 0.9989 & 0.743 & 0.877 & 67 / 21 & 0.03 \\
+Fewest false alarms & RF-P/L & 0.9949 & 0.335 & 0.628 & 56 / 174 & -- \\
+Highest rare-class coverage & XGB/B & 0.9930 & 0.972 & 0.816 & 676 / 1 & 1.44 \\
+Balanced aggregate (macro-$F_1$) & XGB/L & 0.9989 & 0.743 & 0.877 & 67 / 21 & 0.03 \\
+\multicolumn{7}{@{}l}{\emph{CIC-UNSW-NB15 $V_1$}} \\
+Highest accuracy & XGB/L & 0.9881 & 0.391 & 0.545 & 333 / 275 & 0.39 \\
+Fewest false alarms & RF-P/L & 0.9857 & 0.205 & 0.380 & 132 / 396 & -- \\
+Highest rare-class coverage & TabPFN~2.5 & 0.9788 & 0.778 & 0.567 & 1611 / 102 & 1.46 \\
+Balanced aggregate (macro-$F_1$) & TabPFN~2.5 & 0.9788 & 0.778 & 0.567 & 1611 / 102 & 1.46 \\
+\multicolumn{7}{@{}l}{\emph{CIC-UNSW-NB15 $V_2$}} \\
+Highest accuracy & RF-S/L & 0.9845 & 0.264 & 0.443 & 407 / 403 & 0.41 \\
+Fewest false alarms & RF-P/L & 0.9824 & 0.146 & 0.323 & 143 / 519 & -- \\
+Highest rare-class coverage & TabPFN~2.5 & 0.9732 & 0.695 & 0.457 & 2002 / 155 & 1.37 \\
+Balanced aggregate (macro-$F_1$) & TabPFN~2.5 & 0.9732 & 0.695 & 0.457 & 2002 / 155 & 1.37 \\
+\bottomrule
+\end{tabular}

@@ -1,0 +1,5 @@
+stage,column,rows,nan_or_inf,share,by_label
+raw,Flow_Bytes/s,2830743,2867,0.001012808298033414,"{""BENIGN"": 1777, ""DoS Hulk"": 949, ""PortScan"": 126, ""Bot"": 10, ""FTP-Patator"": 3, ""DDoS"": 2}"
+raw,Flow_Packets/s,2830743,2867,0.001012808298033414,"{""BENIGN"": 1777, ""DoS Hulk"": 949, ""PortScan"": 126, ""Bot"": 10, ""FTP-Patator"": 3, ""DDoS"": 2}"
+after_duplicate_drop,Flow_Bytes/s,2522362,1564,0.0006200537432771347,"{""BENIGN"": 1427, ""PortScan"": 125, ""Bot"": 5, ""DoS Hulk"": 3, ""FTP-Patator"": 2, ""DDoS"": 2}"
+after_duplicate_drop,Flow_Packets/s,2522362,1564,0.0006200537432771347,"{""BENIGN"": 1427, ""PortScan"": 125, ""Bot"": 5, ""DoS Hulk"": 3, ""FTP-Patator"": 2, ""DDoS"": 2}"

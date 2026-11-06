@@ -1,0 +1,27 @@
+cell,class,rows,n_files,n_src_ip,n_dst_ip,n_host_pairs,top_pair_share,n_capture_days
+cic_ids2017_V1,BENIGN,2273097,8,8239,9698,39404,0.1053693089275936,8
+cic_ids2017_V1,Bot,1966,1,8,8,12,0.1887080366225839,1
+cic_ids2017_V1,DDoS,128027,1,2,2,2,0.999976567442805,1
+cic_ids2017_V1,DoS GoldenEye,10293,1,1,1,1,1.0,1
+cic_ids2017_V1,DoS Hulk,231073,1,1,1,1,1.0,1
+cic_ids2017_V1,DoS Slowhttptest,5499,1,1,1,1,1.0,1
+cic_ids2017_V1,DoS slowloris,5796,1,1,1,1,1.0,1
+cic_ids2017_V1,FTP-Patator,7938,1,1,1,1,1.0,1
+cic_ids2017_V1,Heartbleed,11,1,1,1,1,1.0,1
+cic_ids2017_V1,Infiltration,36,1,1,1,1,1.0,1
+cic_ids2017_V1,PortScan,158930,1,1,1,1,1.0,1
+cic_ids2017_V1,SSH-Patator,5897,1,1,1,1,1.0,1
+cic_ids2017_V1,Web Attack  Brute Force,1507,1,1,1,1,1.0,1
+cic_ids2017_V1,Web Attack  Sql Injection,21,1,1,1,1,1.0,1
+cic_ids2017_V1,Web Attack  XSS,652,1,1,1,1,1.0,1
+cic_ids2017_V1,,288602,1,0,0,1,1.0,1
+cic_unsw_V1,Analysis,385,1,4,7,11,0.161038961038961,3
+cic_unsw_V1,Backdoor,452,1,4,10,40,0.0508849557522123,3
+cic_unsw_V1,Benign,3450658,1,40,39,293,0.0097836412649413,3
+cic_unsw_V1,DoS,4467,1,4,10,40,0.0335795836131632,3
+cic_unsw_V1,Exploits,30951,1,4,10,40,0.0277535459274336,3
+cic_unsw_V1,Fuzzers,29613,1,4,10,40,0.0463647722284132,3
+cic_unsw_V1,Generic,4632,1,4,10,40,0.0453367875647668,3
+cic_unsw_V1,Reconnaissance,16735,1,4,10,40,0.0285031371377352,3
+cic_unsw_V1,Shellcode,2102,1,4,10,40,0.0328258801141769,3
+cic_unsw_V1,Worms,246,1,4,10,39,0.0772357723577235,3

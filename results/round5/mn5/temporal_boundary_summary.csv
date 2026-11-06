@@ -1,0 +1,7 @@
+design,cell,strata,strata_clean,test_before_fit_max_mean,test_before_fit_max_max,test_before_fit_q99_max,test_before_fit_q50_max,overlap_minutes_max
+chrono,cic_ids2017_V1,19,19,0.0,0.0,0.0,0.0,0.0
+chrono,cic_ids2017_V3,13,13,0.0,0.0,0.0,0.0,0.0
+chrono,cic_unsw_V1+V2,30,30,0.0,0.0,0.0,0.0,0.0
+temporal,cic_ids2017_V1,19,11,0.42101226397351954,1.0,1.0,1.0,508.0
+temporal,cic_ids2017_V3,13,6,0.5384025396536055,1.0,1.0,1.0,508.0
+temporal,cic_unsw_V1+V2,30,2,0.07465501949105985,0.2980189491817399,0.26270456503014644,0.0625,261.81666666666666

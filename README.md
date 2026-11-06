@@ -93,3 +93,21 @@ No benchmark download, GPU, API key, or hosted-model call is required for analys
 - Failure to establish multiplicity-adjusted superiority is not interpreted as equivalence.
 - The two Axis-2 panels are source-specific few-shot evaluations, not a cross-dataset-transfer experiment.
 - Data-rich tree references are available on grouped CIC-IDS2017 only and answer a different information-budget question from the matched five-shot anchors.
+
+## Round-5 revision layer
+
+The second-round revision adds two evidence layers (see `docs/REVISION5_CHANGES.md`):
+
+1. **Record-derived analyses** (`make round5`): balanced accuracy, MCC, Cohen's κ and G-mean for
+   every strict-panel configuration and seed; the constant-benign baseline and accuracy headroom;
+   metric-family rank correlations; effect sizes with bootstrap intervals, d_z and minimum
+   detectable effects for all 48 Axis-1, 8 factorial and 12 Axis-2 contrasts; the hosted-model
+   cost/throughput extrapolation; recommended operating points. Outputs: `results/round5/record/`.
+2. **Re-execution on a second platform** (`notebooks/experiments/round5_reexecution/`): the
+   strict panel with stored class probabilities under the reference row-level partition, two
+   alternative row-level partitions, a chronological within-class split and (CIC-UNSW-NB15) a
+   host-pair-disjoint split, with a leakage audit and session statistics. Summaries:
+   `results/round5/mn5/`.
+
+`scripts/make_round5_tables.py` renders every round-5 manuscript table from these files into
+`results/round5/manuscript_tables/`.
