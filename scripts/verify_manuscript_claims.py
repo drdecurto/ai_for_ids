@@ -34,6 +34,96 @@ def row(df: pd.DataFrame, **where: object) -> pd.Series:
     return out.iloc[0]
 
 
+
+# --------------------------------------------------------------------------- round 5
+R5 = ROOT / "results" / "round5"
+
+
+def verify_round5() -> dict:
+    """Round-5 quantities quoted in the manuscript (abstract, Findings, Sections 4.1, 4.4, 5.3,
+    5.4, 6.1) checked against the released record-derived and re-execution summaries."""
+    rec, mn5 = R5 / "record", R5 / "mn5"
+    cells = ["cic_ids2017_V1", "cic_ids2017_V3", "cic_unsw_V1", "cic_unsw_V2"]
+
+    # constant-benign baselines, headroom, accuracy cost and recall gain of the recall leader
+    base = pd.read_csv(rec / "baseline_and_inversion_magnitude.csv").set_index("cell")
+    close(round(base.loc["cic_ids2017_V1", "constant_benign_accuracy"], 3), 0.831, atol=5e-4)
+    close(round(base.loc["cic_unsw_V1", "constant_benign_accuracy"], 3), 0.975, atol=5e-4)
+    assert base.loc[["cic_ids2017_V1", "cic_ids2017_V3"], "panel_headroom_min"].min() >= 0.79
+    assert base.loc[["cic_ids2017_V1", "cic_ids2017_V3"], "panel_headroom_max"].max() <= 0.995
+    assert (base.loc[["cic_unsw_V1", "cic_unsw_V2"], "panel_headroom_min"] < 0).all()
+    assert [round(x, 3) for x in (base.accuracy_cost_of_recall_leader.min(), base.accuracy_cost_of_recall_leader.max())] == [0.005, 0.011]
+    assert [round(x, 2) for x in (base.rare_recall_gain_of_recall_leader.min(), base.rare_recall_gain_of_recall_leader.max())] == [0.22, 0.43]
+
+    # metric families: balanced accuracy / G-mean follow rare recall, kappa / MCC follow accuracy
+    corr = pd.read_csv(rec / "metric_rank_correlations.csv")
+    rr = corr[corr.metric == "rare_recall"].set_index("cell").rho_with_accuracy
+    assert all(-0.48 <= rr[c] <= -0.42 for c in cells)
+    for m in ("balanced_accuracy", "gmean"):
+        q = corr[corr.metric == m].set_index("cell")
+        assert (q.rho_with_rare_recall >= 0.88).all() and (q.rho_with_accuracy < 0).all()
+    for m in ("kappa", "mcc"):
+        q = corr[corr.metric == m].set_index("cell")
+        assert (q.loc[["cic_ids2017_V1", "cic_ids2017_V3"], "rho_with_accuracy"] == 1.0).all()
+        assert (q.loc[["cic_unsw_V1", "cic_unsw_V2"], "rho_with_accuracy"] >= 0.76).all()
+    assert (corr[corr.metric == "macro_f1"].rho_with_accuracy > 0).all()
+    summ = json.loads((rec / "round5_record_summary.json").read_text())
+    close(round(summ["inversion_permutation"]["p_two_sided"], 3), 0.015, atol=5e-4)
+
+    # effect sizes and minimum detectable effects
+    ax1 = pd.read_csv(rec / "effect_sizes_axis1.csv")
+    rare = ax1[ax1.metric == "rare_recall"] if "metric" in ax1 else ax1
+    assert len(rare) == 48 and (rare.wins == 10).sum() == 40
+    close(round(rare.sd_diff.median(), 3), 0.019, atol=5e-4)
+    assert (rare.mean_delta.abs() > rare.mde80).sum() == 44
+    ax2 = pd.read_csv(rec / "effect_sizes_axis2.csv")
+    kimi = ax2[ax2.model.str.startswith("Kimi")].sort_values("source", ascending=False)
+    assert [round(x, 3) for x in kimi.mean_delta] == [0.028, 0.040]
+    assert [round(x, 3) for x in kimi.mde80] == [0.032, 0.040]
+    assert (kimi.p_bonferroni_6 > 0.05).all()
+    fac = pd.read_csv(rec / "effect_sizes_factorial.csv")
+    bal = fac[fac.contrast.str.startswith("balance")]
+    assert [round(bal.mean_delta.min(), 2), round(bal.mean_delta.max(), 2)] == [0.26, 0.58]
+    assert (fac[fac.contrast.str.startswith("size under balanced")].mean_delta <= 0).all()
+
+    # cost and throughput extrapolations (corrected Nemotron record; both hour measures)
+    app = pd.read_csv(rec / "llm_applicability.csv")
+    nem = app[app.model.str.startswith("Nemotron") & app.source.str.contains("CIC-IDS2017")].iloc[0]
+    close(round(nem.usd_per_1000, 2), 9.95, atol=5e-3)
+    cic = app[app.source.str.contains("CIC-IDS2017")]; unsw = app[~app.source.str.contains("CIC-IDS2017")]
+    assert 2300 <= cic.usd_full_partition.min() and cic.usd_full_partition.max() <= 28900
+    assert 190 <= cic.hours_full_partition_at_endpoint_latency.min() and cic.hours_full_partition_at_endpoint_latency.max() <= 1120
+    assert 260 <= cic.hours_full_partition_at_campaign_rate.min() and cic.hours_full_partition_at_campaign_rate.max() <= 3830
+    assert 3500 <= unsw.usd_full_partition.min() and unsw.usd_full_partition.max() <= 46700
+    assert 225 <= unsw.hours_full_partition_at_endpoint_latency.min() and unsw.hours_full_partition_at_endpoint_latency.max() <= 2700
+    assert 280 <= unsw.hours_full_partition_at_campaign_rate.min() and unsw.hours_full_partition_at_campaign_rate.max() <= 14420
+
+    # recommended operating points
+    op = pd.read_csv(rec / "recommended_operating_points.csv")
+    acc = op[op.objective == "maximise accuracy"].set_index("cell").model
+    assert acc["cic_unsw_V2"] == "rf_strong_full" and (acc.drop("cic_unsw_V2") == "xgb_full").all()
+    assert (op[op.objective == "fewest false alarms"].model == "rf_pruned_full").all()
+    cov = op[op.objective == "maximise rare-class coverage"].set_index("cell").model
+    assert cov["cic_ids2017_V1"] == cov["cic_ids2017_V3"] == "xgb_balanced" and cov["cic_unsw_V1"] == cov["cic_unsw_V2"] == "tabpfn_2.5"
+
+    # re-execution: reference replication, chronological and host-pair designs
+    inv = pd.read_csv(mn5 / "inversion_stats.csv").set_index(["split", "cell"]).rho_acc_rare
+    assert [round(inv[("row2026", c)], 3) for c in cells] == [-0.429, -0.452, -0.429, -0.476]
+    assert [round(inv[("chrono", c)], 3) for c in cells] == [-0.214, -0.119, -0.429, -0.476]
+    assert [round(inv[("hostpair", c)], 2) for c in cells[2:]] == [-0.45, -0.48]
+    cs = pd.read_csv(mn5 / "contrast_by_split.csv")
+    nat = ["rf_pruned_full", "rf_strong_full", "xgb_full"]
+    q = cs[(cs.split == "chrono") & (cs.metric == "rare_recall") & cs.comparator.isin(nat) & cs.model.isin(["tabpfn_2.5", "tabicl"])]
+    assert len(q) == 24 and (q.wins == 10).all() and q.mean_delta.min() >= 0.14
+    ps = pd.read_csv(mn5 / "panel_summary.csv")
+    ch = ps[ps.split == "chrono"].set_index(["cell", "model"]).rare_recall_mean
+    assert round(ch[("cic_ids2017_V1", "tabicl")], 3) == 0.764 and round(ch[("cic_ids2017_V3", "tabicl")], 3) == 0.823
+    bc = pd.read_csv(mn5 / "temporal_boundary_check.csv")
+    c = bc[(bc.design == "chrono") & (bc.ts_available == True)]
+    assert len(c) == 62 and (c.test_before_fit_max == 0).all()
+    return {"round5_axis1_contrasts": 48, "round5_all_ten_seed_contrasts": 40, "round5_chrono_strata_clean": 62,
+            "round5_chrono_rho": [float(round(inv[("chrono", c)], 3)) for c in cells]}
+
 def main() -> None:
     core = pd.read_csv(DER / "axis1_core_summary.csv")
     rank = pd.read_csv(DER / "axis1_rank_inversion.csv")
@@ -181,8 +271,11 @@ def main() -> None:
     assert set(provenance.rows) == {2522362, 3540241}
     assert provenance.raw_source_sha256.isna().all()
 
+    round5 = verify_round5()
+
     report = {
         "status": "PASS",
+        **round5,
         "strict_axis1_records": 320,
         "strict_axis1_summary_rows": 32,
         "pairwise_direction_counts": counts,
@@ -200,7 +293,7 @@ def main() -> None:
     manifest_path = DER / "release_file_manifest_sha256.csv"
     manifest_rows = []
     for path in sorted((ROOT / "results").rglob("*")):
-        if path.is_file() and path != manifest_path:
+        if path.is_file() and path != manifest_path and path.name != ".DS_Store":
             h = hashlib.sha256()
             with path.open("rb") as handle:
                 for chunk in iter(lambda: handle.read(1024 * 1024), b""):

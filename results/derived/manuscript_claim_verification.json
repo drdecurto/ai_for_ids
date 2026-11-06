@@ -1,5 +1,14 @@
 {
   "status": "PASS",
+  "round5_axis1_contrasts": 48,
+  "round5_all_ten_seed_contrasts": 40,
+  "round5_chrono_strata_clean": 62,
+  "round5_chrono_rho": [
+    -0.214,
+    -0.119,
+    -0.429,
+    -0.476
+  ],
   "strict_axis1_records": 320,
   "strict_axis1_summary_rows": 32,
   "pairwise_direction_counts": {
